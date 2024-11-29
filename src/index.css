@@ -31,43 +31,43 @@ body {
   background-color: var(--color-bg);
 }
 
-.text-h1 {
+.text_h1 {
   font: var(--font-h1);
   margin: 0;
   color: var(--color-black);
 }
 
-.text-h2 {
+.text_h2 {
   font: var(--font-h2);
   margin: 0;
   color: var(--color-black);
 }
 
-.text-h3 {
+.text_h3 {
   font: var(--font-h3);
   margin: 0;
   color: var(--color-black);
 }
 
-.text-p {
+.text_p {
   font: var(--font-p);
   color: var(--color-black);
 }
 
-.scroll-y {
+.scroll_y {
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.scroll-x {
+.scroll_x {
   overflow-x: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.scroll-x::-webkit-scrollbar,
-.scroll-y::-webkit-scrollbar {
+.scroll_x::-webkit-scrollbar,
+.scroll_y::-webkit-scrollbar {
   display: none;
 }
 
@@ -113,6 +113,6 @@ body {
   gap: var(--size-16);
 }
 
-.block_content__flow-x {
+.block_content__flow_x {
   flex-direction: row;
 }

@@ -9,14 +9,14 @@ type BlockProps = {
 function Block({ header, horizontalFlow = false, children }: BlockProps) {
   const blockContentClasses = classNames({
     block_content: true,
-    "block_content__flow-x scroll-x": horizontalFlow,
+    block_content__flow_x: horizontalFlow,
+    scroll_x: horizontalFlow,
   });
 
   return (
     <section className="block">
-      {header && <h3 className="text-h3">{header}</h3>}
-      <div className={blockContentClasses}></div>
-      {children}
+      {header && <h3 className="text_h3">{header}</h3>}
+      <div className={blockContentClasses}>{children}</div>
     </section>
   );
 }
