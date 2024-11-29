@@ -100,3 +100,19 @@ body {
   color: var(--color-error);
   background-color: var(--color-white);
 }
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-16);
+}
+
+.block_content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-16);
+}
+
+.block_content__flow-x {
+  flex-direction: row;
+}
