@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import Block from "../components/block";
 import Button from "../components/button";
-import IconLogin from "../icons/login-icon";
+import LoginIcon from "../icons/login-icon";
 import { AuthStatus, ButtonType, CURRENT_AUTH_STATUS, Path } from "../settings";
 
 function HomePage() {
@@ -19,7 +19,7 @@ function HomePage() {
         <Button
           text="Login"
           type={ButtonType.Primary}
-          icon={<IconLogin />}
+          icon={<LoginIcon />}
           onClick={() => navigate(Path.Login)}
         />
       )}
