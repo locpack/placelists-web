@@ -3,7 +3,7 @@ import classNames from "classnames";
 type BlockProps = {
   header?: string;
   horizontalFlow?: boolean;
-  children: React.ReactElement[];
+  children: React.ReactElement | React.ReactElement[];
 };
 
 function Block({ header, horizontalFlow = false, children }: BlockProps) {
