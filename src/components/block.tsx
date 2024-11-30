@@ -3,7 +3,7 @@ import classNames from "classnames";
 type BlockProps = {
   header?: string;
   horizontalFlow?: boolean;
-  children: React.ReactNode;
+  children: React.ReactElement;
 };
 
 function Block({ header, horizontalFlow = false, children }: BlockProps) {
@@ -15,7 +15,7 @@ function Block({ header, horizontalFlow = false, children }: BlockProps) {
 
   return (
     <section className="block">
-      {header && <h3 className="text_h3">{header}</h3>}
+      {header && <h2 className="text_h2">{header}</h2>}
       <div className={blockContentClasses}>{children}</div>
     </section>
   );

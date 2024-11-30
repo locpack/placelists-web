@@ -4,7 +4,7 @@ import { ButtonType } from "../settings";
 type ButtonProps = {
   text: string;
   type: ButtonType;
-  icon?: React.ReactNode;
+  icon?: React.ReactElement;
   onClick?: () => void;
 };
 
