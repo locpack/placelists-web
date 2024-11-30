@@ -12,11 +12,21 @@ export enum InputType {
   Password = "password",
 }
 
-export enum Route {
-  Home = "/home",
-  Login = "/signin",
-  Register = "/signup",
+export enum Path {
+  Home = "/",
+  Login = "/login",
+  Register = "/register",
   Discover = "/discover",
   Saved = "/saved",
   Profile = "/profile",
+  Placelists = "/placelists",
+  Places = "/places",
 }
+
+export enum AuthStatus {
+  Unknown,
+  NotAuthorized,
+  Authorized,
+}
+
+export const CURRENT_AUTH_STATUS = AuthStatus.Authorized;
