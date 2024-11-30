@@ -2,12 +2,12 @@ import { Navigate } from "react-router";
 import { AuthStatus, CURRENT_AUTH_STATUS, Path } from "../settings";
 
 type ProtectedRouteProps = {
-  children: React.ReactElement;
+  child: React.ReactElement;
 };
 
-function ProtectedRoute({ children }: ProtectedRouteProps) {
+function ProtectedRoute({ child }: ProtectedRouteProps) {
   const currentAuthStatus = CURRENT_AUTH_STATUS;
-  return currentAuthStatus === AuthStatus.Authorized ? children : <Navigate to={Path.Login} />;
+  return currentAuthStatus === AuthStatus.Authorized ? child : <Navigate to={Path.Login} />;
 }
 
 export default ProtectedRoute;

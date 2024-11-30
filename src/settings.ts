@@ -30,3 +30,30 @@ export enum AuthStatus {
 }
 
 export const CURRENT_AUTH_STATUS = AuthStatus.Authorized;
+
+export const DISCOVER_PAGE_PLACELISTS = [
+  {
+    id: Math.random().toString(36).substring(2, 7),
+    name: "First",
+    author: {
+      id: Math.random().toString(36).substring(2, 7),
+      name: "Mathew",
+    },
+  },
+  {
+    id: Math.random().toString(36).substring(2, 7),
+    name: "Second",
+    author: {
+      id: Math.random().toString(36).substring(2, 7),
+      name: "Collin",
+    },
+  },
+  {
+    id: Math.random().toString(36).substring(2, 7),
+    name: "Third",
+    author: {
+      id: Math.random().toString(36).substring(2, 7),
+      name: "Andrew",
+    },
+  },
+];
