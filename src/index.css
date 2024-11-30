@@ -188,3 +188,32 @@ body {
 .input_field::-webkit-inner-spin-button {
   appearance: none;
 }
+
+.menu {
+  display: flex;
+  justify-content: center;
+  padding: var(--size-16);
+  border-radius: 32px 32px 0 0;
+  background-color: var(--color-white);
+  gap: var(--size-24);
+}
+
+.menu_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-user-input);
+  height: var(--size-user-input);
+  cursor: pointer;
+  border: 0;
+  border-radius: var(--radius);
+  background-color: var(--color-white);
+  gap: var(--size-8);
+}
+
+.menu_button__active {
+  flex: 1 0 0;
+  width: auto;
+  color: var(--color-white);
+  background-color: var(--color-black);
+}

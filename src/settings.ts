@@ -11,3 +11,12 @@ export enum InputType {
   Email = "email",
   Password = "password",
 }
+
+export enum Route {
+  Home = "/home",
+  Login = "/signin",
+  Register = "/signup",
+  Discover = "/discover",
+  Saved = "/saved",
+  Profile = "/profile",
+}
