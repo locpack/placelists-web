@@ -1,4 +1,4 @@
-function IconPlacelistAdd() {
+function PlacelistAddIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconPlacelistAdd() {
   );
 }
 
-export default IconPlacelistAdd;
+export default PlacelistAddIcon;

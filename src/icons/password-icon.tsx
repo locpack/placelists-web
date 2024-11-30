@@ -1,4 +1,4 @@
-function IconPassword() {
+function PasswordIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconPassword() {
   );
 }
 
-export default IconPassword;
+export default PasswordIcon;

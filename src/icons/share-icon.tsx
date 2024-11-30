@@ -1,4 +1,4 @@
-function IconShare() {
+function ShareIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconShare() {
   );
 }
 
-export default IconShare;
+export default ShareIcon;

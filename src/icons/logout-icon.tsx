@@ -1,4 +1,4 @@
-function IconLogin() {
+function LogoutIcon() {
   return (
     <svg
       fill="none"
@@ -9,7 +9,7 @@ function IconLogin() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M12 8L16 12M16 12L12 16M16 12H3M3.33782 7C5.06687 4.01099 8.29859 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.29859 22 5.06687 19.989 3.33782 17"
+        d="M18 8L22 12M22 12L18 16M22 12H9M15 4.20404C13.7252 3.43827 12.2452 3 10.6667 3C5.8802 3 2 7.02944 2 12C2 16.9706 5.8802 21 10.6667 21C12.2452 21 13.7252 20.5617 15 19.796"
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="2"
@@ -18,4 +18,4 @@ function IconLogin() {
   );
 }
 
-export default IconLogin;
+export default LogoutIcon;

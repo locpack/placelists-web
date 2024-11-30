@@ -1,4 +1,4 @@
-function IconDiscover() {
+function DiscoverIcon() {
   return (
     <svg
       fill="none"
@@ -24,4 +24,4 @@ function IconDiscover() {
   );
 }
 
-export default IconDiscover;
+export default DiscoverIcon;

@@ -1,4 +1,4 @@
-function IconProfileLink() {
+function ProfileLinkIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconProfileLink() {
   );
 }
 
-export default IconProfileLink;
+export default ProfileLinkIcon;

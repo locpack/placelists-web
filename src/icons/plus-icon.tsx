@@ -1,4 +1,4 @@
-function IconPlus() {
+function PlusIcon() {
   return (
     <svg
       fill="none"
@@ -13,4 +13,4 @@ function IconPlus() {
   );
 }
 
-export default IconPlus;
+export default PlusIcon;

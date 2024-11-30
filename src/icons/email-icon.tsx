@@ -1,4 +1,4 @@
-function IconEmail() {
+function EmailIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconEmail() {
   );
 }
 
-export default IconEmail;
+export default EmailIcon;

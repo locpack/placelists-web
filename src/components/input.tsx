@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { InputType } from "../settings";
 import { useRef, useState } from "react";
-import IconText from "../icons/icon-text";
-import IconSearch from "../icons/icon-search";
-import IconEmail from "../icons/icon-email";
-import IconPassword from "../icons/icon-password";
+import IconText from "../icons/text-icon";
+import IconSearch from "../icons/search-icon";
+import IconEmail from "../icons/email-icon";
+import IconPassword from "../icons/password-icon";
 
 type InputProps = {
   name: string;

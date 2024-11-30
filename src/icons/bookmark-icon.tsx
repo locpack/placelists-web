@@ -1,4 +1,4 @@
-function IconBookmark() {
+function BookmarkIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconBookmark() {
   );
 }
 
-export default IconBookmark;
+export default BookmarkIcon;

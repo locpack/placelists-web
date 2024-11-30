@@ -1,4 +1,4 @@
-function IconSave() {
+function SaveIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconSave() {
   );
 }
 
-export default IconSave;
+export default SaveIcon;

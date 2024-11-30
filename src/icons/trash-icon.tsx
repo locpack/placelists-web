@@ -1,4 +1,4 @@
-function IconTrash() {
+function TrashIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconTrash() {
   );
 }
 
-export default IconTrash;
+export default TrashIcon;

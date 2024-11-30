@@ -1,4 +1,4 @@
-function IconSearch() {
+function SearchIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconSearch() {
   );
 }
 
-export default IconSearch;
+export default SearchIcon;

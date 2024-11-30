@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import Block from "../components/block";
 import Button from "../components/button";
-import IconLogin from "../icons/icon-login";
+import IconLogin from "../icons/login-icon";
 import { AuthStatus, ButtonType, CURRENT_AUTH_STATUS, Path } from "../settings";
 
 function HomePage() {

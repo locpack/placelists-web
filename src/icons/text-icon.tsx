@@ -1,4 +1,4 @@
-function IconText() {
+function TextIcon() {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconText() {
   );
 }
 
-export default IconText;
+export default TextIcon;
