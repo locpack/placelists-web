@@ -31,6 +31,14 @@ body {
   background-color: var(--color-bg);
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--size-24);
+  gap: var(--size-24);
+}
+
 .text_h1 {
   font: var(--font-h1);
   margin: 0;
@@ -51,6 +59,7 @@ body {
 
 .text_p {
   font: var(--font-p);
+  margin: 0;
   color: var(--color-black);
 }
 
