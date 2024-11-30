@@ -116,3 +116,45 @@ body {
 .block_content__flow_x {
   flex-direction: row;
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: end;
+  padding: var(--size-16);
+  cursor: pointer;
+  border: 0;
+  border-radius: var(--radius);
+  background-color: var(--color-white);
+  gap: var(--size-8);
+}
+
+.card__extended {
+  width: 256px;
+  height: 256px;
+}
+
+.card__active {
+  background-color: var(--color-black);
+}
+
+.card_header {
+  font: var(--font-p);
+  display: flex;
+  align-self: stretch;
+  text-align: start;
+  color: var(--color-black);
+}
+
+.card_header__active {
+  color: var(--color-white);
+}
+
+.card_hint {
+  font: var(--font-p);
+  display: flex;
+  align-self: stretch;
+  text-align: start;
+  color: var(--color-inactive);
+}
