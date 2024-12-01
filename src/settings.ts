@@ -29,7 +29,7 @@ export enum AuthStatus {
   Authorized,
 }
 
-export const CURRENT_AUTH_STATUS = AuthStatus.Authorized;
+export const CURRENT_AUTH_STATUS = AuthStatus.NotAuthorized;
 
 export const DISCOVER_PAGE_PLACELISTS = [
   {

@@ -13,13 +13,12 @@
   --size-8: 8px;
   --size-16: 16px;
   --size-24: 24px;
-  --size-user-input: 48px;
+  --size-user-input: 56px;
 
   --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --font-h1: 600 24px/32px var(--font-family);
-  --font-h2: 500 20px/24px var(--font-family);
-  --font-h3: 600 16px/16px var(--font-family);
-  --font-p: 500 15px/16px var(--font-family);
+  --font-h1: 600 32px/32px var(--font-family);
+  --font-h2: 500 24px/24px var(--font-family);
+  --font-p: 500 18px/24px var(--font-family);
 }
 
 body {
@@ -47,12 +46,6 @@ body {
 
 .text_h2 {
   font: var(--font-h2);
-  margin: 0;
-  color: var(--color-black);
-}
-
-.text_h3 {
-  font: var(--font-h3);
   margin: 0;
   color: var(--color-black);
 }
@@ -124,6 +117,8 @@ body {
 
 .block_content__flow_x {
   flex-direction: row;
+  padding-inline: var(--size-24);
+  margin-inline: calc(-1 * var(--size-24));
 }
 
 .card {
@@ -140,8 +135,8 @@ body {
 }
 
 .card__extended {
-  width: 256px;
-  height: 256px;
+  width: 304px;
+  height: 304px;
 }
 
 .card__active {
@@ -177,6 +172,7 @@ body {
   border-radius: var(--radius);
   background-color: var(--color-white);
   gap: var(--size-8);
+  color-scheme: light only;
 }
 
 .input__active {
@@ -187,6 +183,7 @@ body {
   font: var(--font-p);
   flex-grow: 1;
   height: var(--size-user-input);
+  background-color: var(--color-white);
   padding: 0;
   border: 0;
   outline: 0;
