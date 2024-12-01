@@ -25,15 +25,22 @@ body {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   margin: 0;
   background-color: var(--color-bg);
+  overflow: hidden;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
   padding: var(--size-24);
   gap: var(--size-24);
 }

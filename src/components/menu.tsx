@@ -2,11 +2,13 @@ import MenuButton from "./menu-button";
 
 function Menu() {
   return (
-    <nav className="menu">
-      <MenuButton text="Обзор" />
-      <MenuButton text="Сохраненные" />
-      <MenuButton text="Профиль" />
-    </nav>
+    <>
+      <nav className="menu">
+        <MenuButton text="Discover" />
+        <MenuButton text="Saved" />
+        <MenuButton text="Profile" />
+      </nav>
+    </>
   );
 }
 

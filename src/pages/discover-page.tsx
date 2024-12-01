@@ -25,6 +25,18 @@ function DiscoverPage() {
           />
         ))}
       </Block>
+      <Block header="Results" horizontalFlow>
+        {placelists.map((placelist) => (
+          <Card
+            key={placelist.id}
+            onClick={() => navigate(`${Path.Placelists}/${placelist.id}`)}
+            text={placelist.name}
+            hint={placelist.author.name}
+            active={false}
+            extended
+          />
+        ))}
+      </Block>
     </>
   );
 }

@@ -33,6 +33,8 @@ export enum AuthStatus {
 
 export const CURRENT_AUTH_STATUS = AuthStatus.Authorized;
 
+export const MENU_HIDDEN = false;
+
 export const DISCOVER_PAGE_PLACELISTS = [
   {
     id: Math.random().toString(36).substring(2, 7),
