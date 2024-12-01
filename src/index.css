@@ -45,6 +45,10 @@ body {
   gap: var(--size-24);
 }
 
+.main__shrinked {
+  padding-bottom: calc(var(--size-user-input) + 2 * var(--size-16) + var(--size-24));
+}
+
 .text_h1 {
   font: var(--font-h1);
   margin: 0;
@@ -209,6 +213,10 @@ body {
   border-radius: 32px 32px 0 0;
   background-color: var(--color-white);
   gap: var(--size-24);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .menu_button {

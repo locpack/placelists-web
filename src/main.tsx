@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
-import App from "./App";
+import App from "./app";
 import ProtectedRoute from "./components/protected-route";
 import UnprotectedRoute from "./components/unprotected-route";
 import "./index.css";
