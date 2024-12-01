@@ -1,5 +1,9 @@
 function LoginPage() {
-  return <>login</>;
+  return (
+    <>
+      <h1 className="text_h1">Login</h1>
+    </>
+  );
 }
 
 export default LoginPage;

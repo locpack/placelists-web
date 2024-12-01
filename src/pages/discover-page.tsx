@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import Block from "../components/block";
 import Card from "../components/card";
 import Input from "../components/input";
-import { DISCOVER_PAGE_PLACELISTS, InputType } from "../settings";
+import { DISCOVER_PAGE_PLACELISTS, InputType, Path } from "../settings";
 
 function DiscoverPage() {
   const placelists = DISCOVER_PAGE_PLACELISTS;
@@ -17,7 +17,7 @@ function DiscoverPage() {
         {placelists.map((placelist) => (
           <Card
             key={placelist.id}
-            onClick={() => navigate(`/placelists/${placelist.id}`)}
+            onClick={() => navigate(`${Path.Placelists}/${placelist.id}`)}
             text={placelist.name}
             hint={placelist.author.name}
             active={false}

@@ -1,5 +1,40 @@
+import { useNavigate } from "react-router";
+import Block from "../components/block";
+import Button from "../components/button";
+import Card from "../components/card";
+import PlacelistAddIcon from "../icons/placelist-add-icon";
+import { ButtonType, Path, SAVED_PAGE_PLACELISTS } from "../settings";
+
 function SavedPage() {
-  return <>saved</>;
+  const placelists = SAVED_PAGE_PLACELISTS;
+
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <h1 className="text_h1">My placelists</h1>
+      {placelists.length > 0 && (
+        <Block>
+          {placelists.map((placelist) => (
+            <Card
+              key={placelist.id}
+              onClick={() => navigate(`${Path.Placelists}/${placelist.id}`)}
+              text={placelist.name}
+              hint={placelist.author.name}
+              active={false}
+              extended={false}
+            />
+          ))}
+        </Block>
+      )}
+      <Button
+        icon={<PlacelistAddIcon />}
+        onClick={() => navigate(Path.PlacelistsCreate)}
+        text="Create placelist"
+        type={ButtonType.Primary}
+      />
+    </>
+  );
 }
 
 export default SavedPage;
