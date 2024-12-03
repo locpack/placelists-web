@@ -3,7 +3,7 @@ import Block from "../components/block";
 import Button from "../components/button";
 import Card from "../components/card";
 import PlacelistAddIcon from "../icons/placelist-add-icon";
-import { ButtonType, Path, SAVED_PAGE_PLACELISTS } from "../settings";
+import { ButtonClass, Path, SAVED_PAGE_PLACELISTS } from "../settings";
 
 function SavedPage() {
   const placelists = SAVED_PAGE_PLACELISTS;
@@ -31,7 +31,7 @@ function SavedPage() {
         icon={<PlacelistAddIcon />}
         onClick={() => navigate(Path.PlacelistsCreate)}
         text="Create placelist"
-        type={ButtonType.Primary}
+        buttonClass={ButtonClass.Primary}
       />
     </>
   );
