@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 export enum ButtonType {
   Primary,
   Secondary,
@@ -37,26 +39,26 @@ export const MENU_HIDDEN = false;
 
 export const DISCOVER_PAGE_PLACELISTS = [
   {
-    id: Math.random().toString(36).substring(2, 7),
+    id: nanoid(8),
     name: "First",
     author: {
-      id: Math.random().toString(36).substring(2, 7),
+      id: nanoid(8),
       name: "Mathew",
     },
   },
   {
-    id: Math.random().toString(36).substring(2, 7),
+    id: nanoid(8),
     name: "Second",
     author: {
-      id: Math.random().toString(36).substring(2, 7),
+      id: nanoid(8),
       name: "Collin",
     },
   },
   {
-    id: Math.random().toString(36).substring(2, 7),
+    id: nanoid(8),
     name: "Third",
     author: {
-      id: Math.random().toString(36).substring(2, 7),
+      id: nanoid(8),
       name: "Andrew",
     },
   },
@@ -64,26 +66,26 @@ export const DISCOVER_PAGE_PLACELISTS = [
 
 export const SAVED_PAGE_PLACELISTS = [
   {
-    id: Math.random().toString(36).substring(2, 7),
+    id: nanoid(8),
     name: "First",
     author: {
-      id: Math.random().toString(36).substring(2, 7),
+      id: nanoid(8),
       name: "Mathew",
     },
   },
   {
-    id: Math.random().toString(36).substring(2, 7),
+    id: nanoid(8),
     name: "Second",
     author: {
-      id: Math.random().toString(36).substring(2, 7),
+      id: nanoid(8),
       name: "Collin",
     },
   },
   {
-    id: Math.random().toString(36).substring(2, 7),
+    id: nanoid(8),
     name: "Third",
     author: {
-      id: Math.random().toString(36).substring(2, 7),
+      id: nanoid(8),
       name: "Andrew",
     },
   },
