@@ -1,9 +1,14 @@
 import { nanoid } from "nanoid";
 
-export enum ButtonType {
+export enum ButtonClass {
   Primary,
   Secondary,
   Destructive,
+}
+
+export enum ButtonType {
+  Default,
+  Submit,
 }
 
 export enum InputType {
@@ -33,7 +38,14 @@ export enum AuthStatus {
   Authorized,
 }
 
-export const CURRENT_AUTH_STATUS = AuthStatus.Authorized;
+export const AUTH_STATUS = AuthStatus.NotAuthorized;
+
+export const USER = {
+  id: nanoid(8),
+  name: "Aleksey",
+  username: "kfcgenius",
+  mail: "minecraft@gmail.com",
+};
 
 export const MENU_HIDDEN = false;
 

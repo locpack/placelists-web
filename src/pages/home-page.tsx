@@ -2,10 +2,10 @@ import { useNavigate } from "react-router";
 import Block from "../components/block";
 import Button from "../components/button";
 import LoginIcon from "../icons/login-icon";
-import { AuthStatus, ButtonType, CURRENT_AUTH_STATUS, Path } from "../settings";
+import { AUTH_STATUS, AuthStatus, ButtonClass, Path } from "../settings";
 
 function HomePage() {
-  const currentAuthStatus = CURRENT_AUTH_STATUS;
+  const authStatus = AUTH_STATUS;
 
   const navigate = useNavigate();
 
@@ -15,10 +15,10 @@ function HomePage() {
       <Block header="Why?">
         <p className="text_p">Here you can do a lot of stuff!</p>
       </Block>
-      {currentAuthStatus !== AuthStatus.Authorized && (
+      {authStatus !== AuthStatus.Authorized && (
         <Button
           text="Login"
-          type={ButtonType.Primary}
+          buttonClass={ButtonClass.Primary}
           icon={<LoginIcon />}
           onClick={() => navigate(Path.Login)}
         />
