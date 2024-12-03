@@ -18,7 +18,7 @@ function Button({ text, buttonClass, icon, type = ButtonType.Default, onClick = 
   });
 
   return (
-    <button className={buttonClasses} onClick={onClick}>
+    <button className={buttonClasses} onClick={onClick} type={type}>
       {icon}
       {text}
     </button>

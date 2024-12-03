@@ -7,8 +7,8 @@ export enum ButtonClass {
 }
 
 export enum ButtonType {
-  Default,
-  Submit,
+  Default = "button",
+  Submit = "submit",
 }
 
 export enum InputType {
