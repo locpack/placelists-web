@@ -24,3 +24,25 @@ export interface UserRegisterForm {
   password: string;
   passwordConfirm: string;
 }
+
+export interface FormInputs {
+  
+}
+
+export interface UserChangeNameForm {
+  name: string;
+}
+
+export interface UserChangeUsernameForm {
+  username: string;
+}
+
+export interface UserChangeEmailForm {
+  email: string;
+  password: string;
+}
+
+export interface UserChangePasswordForm {
+  newPassword: string;
+  password: string;
+}

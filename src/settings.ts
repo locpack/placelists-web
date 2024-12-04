@@ -39,7 +39,7 @@ export enum AuthStatus {
   Authorized,
 }
 
-export const AUTH_STATUS = AuthStatus.NotAuthorized;
+export const AUTH_STATUS = AuthStatus.Authorized;
 
 export const USER = {
   id: nanoid(8),
