@@ -1,24 +1,24 @@
 import classNames from "classnames";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import EmailIcon from "../icons/email-icon";
 import PasswordIcon from "../icons/password-icon";
 import SearchIcon from "../icons/search-icon";
 import TextIcon from "../icons/text-icon";
 import { InputType } from "../settings";
 
-type InputProps = {
+type FormInputProps = {
+  id: string;
   type: InputType;
   placeholder: string;
-  onInput?: (value: string) => void;
+  props?: any;
 };
 
-function Input({ type, placeholder, onInput = () => {} }: InputProps) {
-  const [value, setValue] = useState<string>("");
+function FormInput({ id, type, placeholder, ...props }: FormInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const inputClasses = classNames({
     input: true,
-    input__active: value,
+    input__active: inputRef.current?.value,
   });
 
   const icons = {
@@ -29,24 +29,19 @@ function Input({ type, placeholder, onInput = () => {} }: InputProps) {
     password: <PasswordIcon />,
   };
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
-    onInput(event.target.value);
-  }
-
   return (
     <label className={inputClasses} onClick={() => inputRef.current!.focus()}>
       {icons[type]}
       <input
+        id={id}
         className="input_field"
         type={type}
         placeholder={placeholder}
         ref={inputRef}
-        value={value}
-        onChange={handleChange}
+        {...props}
       />
     </label>
   );
 }
 
-export default Input;
+export default FormInput;
