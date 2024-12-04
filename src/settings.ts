@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 export enum ButtonClass {
   Primary,
   Secondary,
+  Tertiary,
   Destructive,
 }
 

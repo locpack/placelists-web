@@ -1,11 +1,14 @@
 import { Formik } from "formik";
+import { useNavigate } from "react-router";
 import Button from "../components/button";
 import FormInput from "../components/form-input";
 import LoginIcon from "../icons/login-icon";
-import { ButtonClass, ButtonType, InputType } from "../settings";
+import { ButtonClass, ButtonType, InputType, Path } from "../settings";
 import { UserLogin } from "../types/user";
 
 function LoginPage() {
+  const navigate = useNavigate();
+
   const initialUserValues: UserLogin = {
     username: "",
     password: "",
@@ -44,6 +47,12 @@ function LoginPage() {
               buttonClass={ButtonClass.Primary}
               icon={<LoginIcon />}
               type={ButtonType.Submit}
+            />
+
+            <Button
+              text="Register"
+              buttonClass={ButtonClass.Tertiary}
+              onClick={() => navigate(Path.Register)}
             />
           </form>
         )}

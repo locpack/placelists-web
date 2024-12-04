@@ -109,6 +109,11 @@ body {
   background-color: var(--color-black);
 }
 
+.button__tertiary {
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
 .button__destructive {
   color: var(--color-error);
   background-color: var(--color-white);

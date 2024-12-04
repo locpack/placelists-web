@@ -14,6 +14,7 @@ function Button({ text, buttonClass, icon, type = ButtonType.Default, onClick = 
     button: true,
     button__primary: buttonClass === ButtonClass.Primary,
     button__secondary: buttonClass === ButtonClass.Secondary,
+    button__tertiary: buttonClass === ButtonClass.Tertiary,
     button__destructive: buttonClass === ButtonClass.Destructive,
   });
 
