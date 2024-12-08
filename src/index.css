@@ -68,6 +68,10 @@ body {
   color: var(--color-black);
 }
 
+.text_h1:last-child {
+  margin-bottom: 0;
+}
+
 .text_h2 {
   font: var(--font-h2);
   margin: 0;
