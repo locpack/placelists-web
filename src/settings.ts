@@ -1,15 +1,9 @@
 import { nanoid } from "nanoid";
 
-export enum ButtonClass {
-  Primary,
-  Secondary,
-  Tertiary,
-  Destructive,
-}
-
 export enum ButtonType {
-  Default = "button",
-  Submit = "submit",
+  Primary,
+  Accent,
+  Tertiary,
 }
 
 export enum InputType {
@@ -39,7 +33,7 @@ export enum AuthStatus {
   Authorized,
 }
 
-export const AUTH_STATUS = AuthStatus.Authorized;
+export const AUTH_STATUS = AuthStatus.NotAuthorized;
 
 export const USER = {
   id: nanoid(8),
@@ -102,4 +96,16 @@ export const SAVED_PAGE_PLACELISTS = [
       name: "Andrew",
     },
   },
+];
+
+export const PLACELIST_PAGE_PLACES = [
+  { id: nanoid(8), name: "First", address: "Mayer st. 23" },
+  { id: nanoid(8), name: "Second", address: "Frunze 2" },
+  { id: nanoid(8), name: "Third", address: "Adawda aw 1" },
+  { id: nanoid(8), name: "First", address: "Mayer st. 23" },
+  { id: nanoid(8), name: "Second", address: "Frunze 2" },
+  { id: nanoid(8), name: "Third", address: "Adawda aw 1" },
+  { id: nanoid(8), name: "First", address: "Mayer st. 23" },
+  { id: nanoid(8), name: "Second", address: "Frunze 2" },
+  { id: nanoid(8), name: "Third", address: "Adawda aw 1" },
 ];

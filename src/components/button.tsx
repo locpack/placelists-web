@@ -1,25 +1,24 @@
 import classNames from "classnames";
-import { ButtonClass, ButtonType } from "../settings";
+import { ButtonType } from "../settings";
 
 type ButtonProps = {
-  text: string;
-  buttonClass: ButtonClass;
+  text?: string;
+  type: ButtonType;
   icon?: React.ReactElement;
-  type?: ButtonType;
   onClick?: () => void;
 };
 
-function Button({ text, buttonClass, icon, type = ButtonType.Default, onClick = () => {} }: ButtonProps) {
+function Button({ text, type, icon, onClick = () => {} }: ButtonProps) {
   const buttonClasses = classNames({
     button: true,
-    button__primary: buttonClass === ButtonClass.Primary,
-    button__secondary: buttonClass === ButtonClass.Secondary,
-    button__tertiary: buttonClass === ButtonClass.Tertiary,
-    button__destructive: buttonClass === ButtonClass.Destructive,
+    button__primary: type === ButtonType.Primary,
+    button__accent: type === ButtonType.Accent,
+    button__tertiary: type === ButtonType.Tertiary,
+    
   });
 
   return (
-    <button className={buttonClasses} onClick={onClick} type={type}>
+    <button className={buttonClasses} onClick={onClick}>
       {icon}
       {text}
     </button>

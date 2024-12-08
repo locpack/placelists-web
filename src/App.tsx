@@ -17,7 +17,7 @@ function App() {
       <main className={mainClasses}>
         <Outlet />
       </main>
-      <Menu />
+      {!menuHidden && <Menu />}
     </>
   );
 }

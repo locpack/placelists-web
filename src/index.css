@@ -1,69 +1,48 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
-  --color-primary: #c2eb2d;
   --color-black: #1e1e1e;
   --color-white: #fff;
-  --color-bg: #eaeaea;
-  --color-inactive: #858585;
-  --color-error: #e24848;
+  --color-accent: #78f067;
+  --color-grey: #f2f2f2;
 
   --radius: 16px;
 
   --size-8: 8px;
   --size-16: 16px;
   --size-24: 24px;
+  --size-32: 32px;
+  --size-40: 40px;
+  --size-64: 64px;
   --size-user-input: 56px;
 
   --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --font-h1: 600 32px/32px var(--font-family);
+  --font-h1: 600 32px/40px var(--font-family);
   --font-h2: 500 24px/24px var(--font-family);
-  --font-p: 500 18px/24px var(--font-family);
+  --font-p: 600 18px/24px var(--font-family);
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
   margin: 0;
-  background-color: var(--color-bg);
-  overflow-x: hidden;
+  background-color: var(--color-white);
 }
 
 #root {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100svh;
 }
 
 .main {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  padding: var(--size-24);
-  gap: var(--size-24);
+  padding: var(--size-64) var(--size-24) var(--size-24) var(--size-24);
+  gap: var(--size-40);
 }
 
 .main__shrinked {
-  padding-bottom: calc(var(--size-user-input) + 2 * var(--size-16) + var(--size-24));
-}
-
-.text_h1 {
-  font: var(--font-h1);
-  margin: 0;
-  color: var(--color-black);
-}
-
-.text_h2 {
-  font: var(--font-h2);
-  margin: 0;
-  color: var(--color-black);
-}
-
-.text_p {
-  font: var(--font-p);
-  margin: 0;
-  color: var(--color-black);
+  padding-bottom: 0;
 }
 
 .scroll_y {
@@ -83,11 +62,33 @@ body {
   display: none;
 }
 
+.text_h1 {
+  font: var(--font-h1);
+  margin: 0 0 var(--size-16) 0;
+  color: var(--color-black);
+}
+
+.text_h2 {
+  font: var(--font-h2);
+  margin: 0;
+  color: var(--color-black);
+}
+
+.text_p {
+  font: var(--font-p);
+  margin: 0;
+  color: var(--color-black);
+}
+
+.progress_bar {
+  height: var(--size-32);
+  border-radius: var(--radius);
+  background-color: var(--color-grey);
+  margin-bottom: var(--size-16);
+}
+
 .button {
   font: var(--font-p);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: var(--size-user-input);
   cursor: pointer;
@@ -95,87 +96,51 @@ body {
   border: 0;
   border-radius: var(--radius);
   background-color: var(--color-white);
-  gap: var(--size-8);
 }
 
 .button__primary {
-  color: var(--color-black);
-  background-color: var(--color-primary);
-}
-
-.button__secondary {
   color: var(--color-white);
   background-color: var(--color-black);
+}
+
+.button__accent {
+  background-color: var(--color-accent);
 }
 
 .button__tertiary {
-  color: var(--color-black);
-  background-color: var(--color-white);
-}
-
-.button__destructive {
-  color: var(--color-error);
-  background-color: var(--color-white);
-}
-
-.block {
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-16);
-}
-
-.block_content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-16);
-}
-
-.block_content__flow_x {
-  flex-direction: row;
-  padding-inline: var(--size-24);
-  margin-inline: calc(-1 * var(--size-24));
+  background-color: var(--color-grey);
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  justify-content: end;
-  padding: var(--size-16);
+  display: block;
+  width: 100%;
+  margin-bottom: var(--size-16);
+  padding: var(--size-16) var(--size-24);
   cursor: pointer;
   border: 0;
   border-radius: var(--radius);
-  background-color: var(--color-white);
-  gap: var(--size-8);
+  background-color: var(--color-grey);
 }
 
-.card__extended {
-  width: 304px;
-  height: 304px;
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card_content {
+  display: block;
+  text-align: start;
 }
 
 .card__active {
+  color: var(--color-white);
   background-color: var(--color-black);
 }
 
-.card_header {
-  font: var(--font-p);
+.menu {
   display: flex;
-  align-self: stretch;
-  text-align: start;
-  color: var(--color-black);
-}
-
-.card_header__active {
-  color: var(--color-white);
-}
-
-.card_hint {
-  font: var(--font-p);
-  display: flex;
-  align-self: stretch;
-  text-align: start;
-  color: var(--color-inactive);
+  padding: var(--size-16) var(--size-24);
+  background-color: var(--color-white);
+  gap: var(--size-16);
 }
 
 .input {
@@ -208,53 +173,4 @@ body {
 .input_field::-webkit-outer-spin-button,
 .input_field::-webkit-inner-spin-button {
   appearance: none;
-}
-
-.menu {
-  display: flex;
-  justify-content: center;
-  padding: var(--size-16);
-  border-radius: 32px 32px 0 0;
-  background-color: var(--color-white);
-  gap: var(--size-24);
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.menu_button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--size-user-input);
-  height: var(--size-user-input);
-  cursor: pointer;
-  border: 0;
-  border-radius: var(--radius);
-  background-color: var(--color-white);
-  gap: var(--size-8);
-}
-
-.menu_button__active {
-  flex: 1 0 0;
-  width: auto;
-  color: var(--color-white);
-  background-color: var(--color-black);
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-8);
-}
-
-.username {
-  color: var(--color-inactive);
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-16);
 }
