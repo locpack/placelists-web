@@ -1,11 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { AuthStatus } from "../settings";
+import { AuthStatus, RequestStatus } from "../settings";
 import { InitialState } from "../types/redux";
-import { checkAuth, login, logout } from "./api-actions";
+import { checkAuth, fetchPlacelists, login, logout } from "./api-actions";
 
 const initialState: InitialState = {
   authStatus: AuthStatus.Unknown,
   user: null,
+  fetchingPlacelistsStatus: RequestStatus.Idle,
+  placelists: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -32,5 +34,15 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(logout.fulfilled, (state) => {
       state.user = null;
       state.authStatus = AuthStatus.NotAuthorized;
+    })
+    .addCase(fetchPlacelists.pending, (state) => {
+      state.fetchingPlacelistsStatus = RequestStatus.Pending;
+    })
+    .addCase(fetchPlacelists.fulfilled, (state, action) => {
+      state.fetchingPlacelistsStatus = RequestStatus.Success;
+      state.placelists = action.payload;
+    })
+    .addCase(fetchPlacelists.rejected, (state) => {
+      state.fetchingPlacelistsStatus = RequestStatus.Error;
     });
 });

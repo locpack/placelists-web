@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
 import { deleteToken, setToken } from "../services/token-service";
-import { ApiRoute, Namespace } from "../settings";
+import { ApiRoute, DISCOVER_PAGE_PLACELISTS, Namespace } from "../settings";
+import { PlacelistCompressed } from "../types/placelist";
 import { UserIdentity, UserLogin } from "../types/user";
 
 type ThunkApiConfig = {
@@ -30,5 +31,21 @@ export const logout = createAsyncThunk<void, undefined, ThunkApiConfig>(
   async (_arg, { extra: api }) => {
     await api.delete(ApiRoute.Logout);
     deleteToken();
+  }
+);
+
+export const fetchPlacelists = createAsyncThunk<PlacelistCompressed[], string, ThunkApiConfig>(
+  `${Namespace.Placelists}/fetch`,
+  async (query: string, { extra: api }) => {
+    // const { data } = await api.get<PlacelistCompressed[]>(ApiRoute.Placelists, {
+    //   params: {
+    //     query,
+    //   },
+    // });
+    const data = DISCOVER_PAGE_PLACELISTS.filter(
+      (placelist) =>
+        placelist.author.toLowerCase().includes(query) || placelist.name.toLowerCase().includes(query)
+    );
+    return data;
   }
 );

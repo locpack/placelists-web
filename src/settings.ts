@@ -27,11 +27,19 @@ export enum AuthStatus {
 
 export enum Namespace {
   User = "User",
+  Placelists = "Placelists",
 }
 
 export enum ApiRoute {
   Login = "/login",
   Logout = "/logout",
+  Placelists = "/placelsts",
+}
+
+export enum RequestStatus {
+  Pending,
+  Success,
+  Error,
 }
 
 export const AUTH_STATUS = AuthStatus.NotAuthorized;
@@ -50,6 +58,51 @@ export const USER = {
 export const MENU_HIDDEN = false;
 
 export const DISCOVER_PAGE_PLACELISTS = [
+  {
+    id: nanoid(8),
+    name: "First",
+    author: "Mathew",
+  },
+  {
+    id: nanoid(8),
+    name: "Second",
+    author: "Collin",
+  },
+  {
+    id: nanoid(8),
+    name: "Third",
+    author: "Andrew",
+  },
+  {
+    id: nanoid(8),
+    name: "First",
+    author: "Mathew",
+  },
+  {
+    id: nanoid(8),
+    name: "Second",
+    author: "Collin",
+  },
+  {
+    id: nanoid(8),
+    name: "Third",
+    author: "Andrew",
+  },
+  {
+    id: nanoid(8),
+    name: "First",
+    author: "Mathew",
+  },
+  {
+    id: nanoid(8),
+    name: "Second",
+    author: "Collin",
+  },
+  {
+    id: nanoid(8),
+    name: "Third",
+    author: "Andrew",
+  },
   {
     id: nanoid(8),
     name: "First",

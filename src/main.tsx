@@ -9,10 +9,9 @@ import ErrorPage from "./pages/error-page";
 import PlacelistPage from "./pages/placelist-page";
 import ProfilePage from "./pages/profile-page";
 import { Path } from "./settings";
-import { checkAuth } from "./store/api-actions";
 import { store } from "./store/main";
 
-store.dispatch(checkAuth());
+// store.dispatch(checkAuth());
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
