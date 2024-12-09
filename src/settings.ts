@@ -25,7 +25,20 @@ export enum AuthStatus {
   Authorized,
 }
 
+export enum Namespace {
+  User = "User",
+}
+
+export enum ApiRoute {
+  Login = "/login",
+  Logout = "/logout",
+}
+
 export const AUTH_STATUS = AuthStatus.NotAuthorized;
+
+export const BACKEND_URL = "https://jsonplaceholder.typicode.com";
+export const REQUEST_TIMEOUT = 5000;
+export const TOKEN_KEY_NAME = "placelists-token";
 
 export const USER = {
   id: nanoid(8),
