@@ -148,33 +148,18 @@ body {
 }
 
 .input {
-  display: flex;
-  align-items: center;
+  height: var(--size-user-input);
   padding: 0 var(--size-16);
   cursor: text;
+  border: 0;
+  outline: 0;
   color: var(--color-inactive);
   border-radius: var(--radius);
-  background-color: var(--color-white);
+  background-color: var(--color-grey);
   gap: var(--size-8);
-  color-scheme: light only;
+  font: var(--font-p);
 }
 
 .input__active {
   color: var(--color-black);
-}
-
-.input_field {
-  font: var(--font-p);
-  flex-grow: 1;
-  height: var(--size-user-input);
-  background-color: var(--color-white);
-  padding: 0;
-  border: 0;
-  outline: 0;
-}
-
-.input_field::-webkit-search-cancel-button,
-.input_field::-webkit-outer-spin-button,
-.input_field::-webkit-inner-spin-button {
-  appearance: none;
 }

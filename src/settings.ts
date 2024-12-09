@@ -6,14 +6,6 @@ export enum ButtonType {
   Tertiary,
 }
 
-export enum InputType {
-  Number = "number",
-  Search = "search",
-  Text = "text",
-  Email = "email",
-  Password = "password",
-}
-
 export enum Path {
   Home = "/",
   Login = "/login",
@@ -48,26 +40,17 @@ export const DISCOVER_PAGE_PLACELISTS = [
   {
     id: nanoid(8),
     name: "First",
-    author: {
-      id: nanoid(8),
-      name: "Mathew",
-    },
+    author: "Mathew",
   },
   {
     id: nanoid(8),
     name: "Second",
-    author: {
-      id: nanoid(8),
-      name: "Collin",
-    },
+    author: "Collin",
   },
   {
     id: nanoid(8),
     name: "Third",
-    author: {
-      id: nanoid(8),
-      name: "Andrew",
-    },
+    author: "Andrew",
   },
 ];
 
