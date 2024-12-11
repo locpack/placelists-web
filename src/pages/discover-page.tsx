@@ -1,6 +1,5 @@
 import { Block } from "@/components/ui/block";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Header } from "@/components/ui/header";
 import { Input } from "@/components/ui/input";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { Path } from "@/settings";
@@ -14,7 +13,7 @@ function DiscoverPage() {
 
   return (
     <>
-      <Header text={"Find placelists"} />
+      <h1 className="text-4xl font-bold tracking-tight">Find placelists</h1>
       <Input
         placeholder="Search"
         type="text"
