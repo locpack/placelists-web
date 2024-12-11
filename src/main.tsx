@@ -6,8 +6,6 @@ import App from "./app";
 import "./index.css";
 import DiscoverPage from "./pages/discover-page";
 import ErrorPage from "./pages/error-page";
-import PlacelistPage from "./pages/placelist-page";
-import ProfilePage from "./pages/profile-page";
 import { Path } from "./settings";
 import { store } from "./store/main";
 
@@ -19,9 +17,9 @@ createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <Routes>
           <Route path={Path.Home} element={<App />}>
-            <Route path={`${Path.Placelists}/:id`} element={<PlacelistPage />} />
             <Route path={Path.Discover} element={<DiscoverPage />} />
-            <Route path={Path.Profile} element={<ProfilePage />} />
+            {/* <Route path={`${Path.Placelists}/:id`} element={<PlacelistPage />} />
+            <Route path={Path.Profile} element={<ProfilePage />} /> */}
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

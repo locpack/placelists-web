@@ -16,6 +16,7 @@
     "p": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-menubar": "^1.1.2",
     "@reduxjs/toolkit": "^2.4.0",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",

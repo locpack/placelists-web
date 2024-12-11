@@ -3,7 +3,7 @@ type BlockProps = {
 };
 
 function Block({ children }: BlockProps) {
-  return <section className="block">{children}</section>;
+  return <section className="flex flex-col gap-4">{children}</section>;
 }
 
-export default Block;
+export { Block };
