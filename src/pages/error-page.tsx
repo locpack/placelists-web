@@ -1,8 +1,10 @@
+import { Header } from "@/components/ui/header";
+
 function ErrorPage() {
   return (
     <>
-      <h1 className="text_h1">Wut? How you found that page?</h1>
-      <p className="text_p">404 Error</p>
+      <Header text="Wut? How you found that page?" />
+      <p>404 Error</p>
     </>
   );
 }
