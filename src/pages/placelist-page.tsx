@@ -30,7 +30,6 @@ function PlacelistPage() {
   }
 
   function updateProgress() {
-    console.log(places.map((x) => x.visited));
     if (!places) {
       setProgress(0);
       return;
