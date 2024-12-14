@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { PlaceCompressed } from "./types/place";
+import { Place } from "./types/place";
 import { Placelist } from "./types/placelist";
 
 export enum ButtonType {
@@ -61,97 +61,30 @@ export const USER = {
 
 export const MENU_HIDDEN = false;
 
-export const DISCOVER_PAGE_PLACELISTS = [
+export const DISCOVER_PAGE_PLACELISTS: Placelist[] = [
   {
     id: nanoid(8),
     name: "First",
-    author: "Mathew",
+    author: { id: nanoid(8), name: "Mathew" },
   },
   {
     id: nanoid(8),
     name: "Second",
-    author: "Collin",
+    author: { id: nanoid(8), name: "Collin" },
   },
   {
     id: nanoid(8),
     name: "Third",
-    author: "Andrew",
+    author: { id: nanoid(8), name: "Andrew" },
   },
   {
     id: nanoid(8),
-    name: "First",
-    author: "Mathew",
-  },
-  {
-    id: nanoid(8),
-    name: "Second",
-    author: "Collin",
-  },
-  {
-    id: nanoid(8),
-    name: "Third",
-    author: "Andrew",
-  },
-  {
-    id: nanoid(8),
-    name: "First",
-    author: "Mathew",
-  },
-  {
-    id: nanoid(8),
-    name: "Second",
-    author: "Collin",
-  },
-  {
-    id: nanoid(8),
-    name: "Third",
-    author: "Andrew",
-  },
-  {
-    id: nanoid(8),
-    name: "First",
-    author: "Mathew",
-  },
-  {
-    id: nanoid(8),
-    name: "Second",
-    author: "Collin",
-  },
-  {
-    id: nanoid(8),
-    name: "Third",
-    author: "Andrew",
+    name: "Fourth",
+    author: { id: nanoid(8), name: "Ewrin" },
   },
 ];
 
-export const SAVED_PAGE_PLACELISTS = [
-  {
-    id: nanoid(8),
-    name: "First",
-    author: {
-      id: nanoid(8),
-      name: "Mathew",
-    },
-  },
-  {
-    id: nanoid(8),
-    name: "Second",
-    author: {
-      id: nanoid(8),
-      name: "Collin",
-    },
-  },
-  {
-    id: nanoid(8),
-    name: "Third",
-    author: {
-      id: nanoid(8),
-      name: "Andrew",
-    },
-  },
-];
-
-export const PLACELIST_PAGE_PLACES: PlaceCompressed[] = [
+export const PLACELIST_PAGE_PLACES: Place[] = [
   { id: nanoid(8), name: "First", address: "Mayer st. 23", visited: true },
   { id: nanoid(8), name: "Second", address: "Frunze 2", visited: true },
   { id: nanoid(8), name: "Third", address: "Adawda aw 1", visited: true },
@@ -170,5 +103,4 @@ export const PLACELIST: Placelist = {
   id: nanoid(8),
   name: "First",
   author: { id: nanoid(8), name: "selfisher" },
-  places: PLACELIST_PAGE_PLACES,
 };

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { fetchPlacelist, updatePlace } from "@/store/api-actions";
-import { PlaceCompressed } from "@/types/place";
+import { Place } from "@/types/place";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
@@ -12,6 +12,7 @@ function PlacelistPage() {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const placelist = useAppSelector((state) => state.placelist);
+  const places = useAppSelector((state) => state.places);
 
   useEffect(() => {
     if (id) {
@@ -19,7 +20,7 @@ function PlacelistPage() {
     }
   }, [dispatch, id]);
 
-  function handleClick(place: PlaceCompressed) {
+  function handleClick(place: Place) {
     dispatch(updatePlace({ ...place, visited: !place.visited }));
   }
 
@@ -38,7 +39,7 @@ function PlacelistPage() {
             <Button>Add Place</Button>
           </Block>
           <Block>
-            {placelist.places.map((place) => (
+            {places.map((place) => (
               <Card
                 key={place.id}
                 className={

@@ -22,10 +22,14 @@ function DiscoverPage() {
 
       <Block>
         {placelists.map((placelist) => (
-          <Card key={placelist.id} onClick={() => navigate(`${Path.Placelists}/${placelist.id}`)}>
+          <Card
+            key={placelist.id}
+            className="cursor-pointer hover:bg-secondary/90"
+            onClick={() => navigate(`${Path.Placelists}/${placelist.id}`)}
+          >
             <CardHeader>
               <CardTitle>{placelist.name}</CardTitle>
-              <CardDescription>{placelist.author}</CardDescription>
+              <CardDescription>{placelist.author.name}</CardDescription>
             </CardHeader>
           </Card>
         ))}

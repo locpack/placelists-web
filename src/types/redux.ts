@@ -1,5 +1,6 @@
 import { AuthStatus, RequestStatus } from "../settings";
-import { Placelist, PlacelistCompressed } from "./placelist";
+import { Place } from "./place";
+import { Placelist } from "./placelist";
 import { UserIdentity } from "./user";
 
 export interface InitialState {
@@ -7,6 +8,7 @@ export interface InitialState {
   authStatus: AuthStatus;
   fetchingPlacelistsStatus: RequestStatus;
   fetchingPlacelistStatus: RequestStatus;
-  placelists: PlacelistCompressed[];
+  placelists: Placelist[];
   placelist: Placelist | null;
+  places: Place[];
 }
