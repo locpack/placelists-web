@@ -91,12 +91,6 @@ export const PLACELIST_PAGE_PLACES: Place[] = [
   { id: nanoid(8), name: "First", address: "Mayer st. 23", visited: false },
   { id: nanoid(8), name: "Second", address: "Frunze 2", visited: false },
   { id: nanoid(8), name: "Third", address: "Adawda aw 1", visited: true },
-  { id: nanoid(8), name: "First", address: "Mayer st. 23", visited: false },
-  { id: nanoid(8), name: "Second", address: "Frunze 2", visited: true },
-  { id: nanoid(8), name: "Third", address: "Adawda aw 1", visited: false },
-  { id: nanoid(8), name: "Third", address: "Adawda aw 1", visited: false },
-  { id: nanoid(8), name: "Third", address: "Adawda aw 1", visited: false },
-  { id: nanoid(8), name: "Third", address: "Adawda aw 1", visited: false },
 ];
 
 export const PLACELIST: Placelist = {
