@@ -1,6 +1,6 @@
 import { Block } from "@/components/ui/block";
 import { Button } from "@/components/ui/button";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { fetchPlacelist, updatePlace } from "@/store/api-actions";
 import { Place } from "@/types/place";
@@ -50,8 +50,12 @@ function PlacelistPage() {
             <h2 className="text-2xl">@{placelist.author.name}</h2>
           </Block>
           <Block>
-            <Progress value={progress} />
-            <Button>Add Place</Button>
+            <Card>
+              <CardContent className="flex flex-col pt-6 gap-4">
+                <Progress value={progress} />
+                <Button className="flex flex-1-1">Add Place</Button>
+              </CardContent>
+            </Card>
           </Block>
           <Block>
             {places.map((place) => (
