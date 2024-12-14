@@ -9,3 +9,8 @@ export interface UserLogin {
   email: string;
   password: string;
 }
+
+export interface UserCompressed {
+  id: string;
+  name: string;
+}

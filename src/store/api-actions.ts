@@ -1,8 +1,9 @@
+import { PlaceCompressed } from "@/types/place";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
 import { deleteToken, setToken } from "../services/token-service";
-import { ApiRoute, DISCOVER_PAGE_PLACELISTS, Namespace } from "../settings";
-import { PlacelistCompressed } from "../types/placelist";
+import { ApiRoute, DISCOVER_PAGE_PLACELISTS, Namespace, PLACELIST } from "../settings";
+import { Placelist, PlacelistCompressed } from "../types/placelist";
 import { UserIdentity, UserLogin } from "../types/user";
 
 type ThunkApiConfig = {
@@ -46,6 +47,24 @@ export const fetchPlacelists = createAsyncThunk<PlacelistCompressed[], string, T
       (placelist) =>
         placelist.author.toLowerCase().includes(query) || placelist.name.toLowerCase().includes(query)
     );
+    return data;
+  }
+);
+
+export const fetchPlacelist = createAsyncThunk<Placelist, Placelist["id"], ThunkApiConfig>(
+  `${Namespace.Placelist}/fetch`,
+  async (placelistId, { extra: api }) => {
+    //const { data } = await api.get<Placelist>(`${ApiRoute.Placelists}/${placelistId}`);
+    const data = PLACELIST;
+    return data;
+  }
+);
+
+export const updatePlace = createAsyncThunk<PlaceCompressed, PlaceCompressed, ThunkApiConfig>(
+  `${Namespace.Place}/update`,
+  async (place, { extra: api }) => {
+    //const { data } = await api.get<Placelist>(`${ApiRoute.Placelists}/${placelistId}`);
+    const data = place;
     return data;
   }
 );

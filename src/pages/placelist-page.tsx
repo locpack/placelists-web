@@ -2,37 +2,61 @@ import { Block } from "@/components/ui/block";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { useAppDispatch } from "../hooks/redux";
-import { PLACELIST_PAGE_PLACES } from "../settings";
+import { fetchPlacelist, updatePlace } from "@/store/api-actions";
+import { PlaceCompressed } from "@/types/place";
+import { useEffect } from "react";
+import { useParams } from "react-router";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
 
 function PlacelistPage() {
   const dispatch = useAppDispatch();
-  const places = PLACELIST_PAGE_PLACES;
+  const { id } = useParams();
+  const placelist = useAppSelector((state) => state.placelist);
 
-  // useEffect(() => {
-  //   dispatch(fetchPlacelist());
-  // }, [dispatch]);
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchPlacelist(id));
+    }
+  }, [dispatch, id]);
+
+  function handleClick(place: PlaceCompressed) {
+    dispatch(updatePlace({ ...place, visited: !place.visited }));
+  }
 
   return (
     <>
-      <Block>
-        <h1 className="text-4xl font-bold tracking-tight">My First Placelist!</h1>
-        <h2 className="text-2xl">@author</h2>
-      </Block>
-      <Block>
-        <Progress value={33} />
-        <Button>Add Place</Button>
-      </Block>
-      <Block>
-        {places.map((place) => (
-          <Card key={place.id}>
-            <CardHeader>
-              <CardTitle>{place.name}</CardTitle>
-              <CardDescription>{place.address}</CardDescription>
-            </CardHeader>
-          </Card>
-        ))}
-      </Block>
+      {!placelist ? (
+        <p className="text-center">Error during loading page</p>
+      ) : (
+        <>
+          <Block>
+            <h1 className="text-4xl font-bold tracking-tight">{placelist.name}</h1>
+            <h2 className="text-2xl">{placelist.author.name}</h2>
+          </Block>
+          <Block>
+            <Progress value={33} />
+            <Button>Add Place</Button>
+          </Block>
+          <Block>
+            {placelist.places.map((place) => (
+              <Card
+                key={place.id}
+                className={
+                  place.visited
+                    ? "bg-primary text-primary-foreground cursor-pointer hover:bg-primary/90"
+                    : "cursor-pointer hover:bg-secondary/90"
+                }
+                onClick={() => handleClick(place)}
+              >
+                <CardHeader>
+                  <CardTitle>{place.name}</CardTitle>
+                  <CardDescription>{place.address}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </Block>
+        </>
+      )}
     </>
   );
 }
