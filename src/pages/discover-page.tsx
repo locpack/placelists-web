@@ -1,5 +1,5 @@
 import { Block } from "@/components/ui/block";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { Path } from "@/settings";
@@ -14,11 +14,16 @@ function DiscoverPage() {
   return (
     <>
       <h1 className="text-4xl font-bold tracking-tight">Find placelists</h1>
-      <Input
-        placeholder="Search"
-        type="text"
-        onInput={(event) => dispatch(fetchPlacelists(event.currentTarget.value))}
-      />
+
+      <Card>
+        <CardContent className="pt-6">
+          <Input
+            placeholder="Search"
+            type="text"
+            onInput={(event) => dispatch(fetchPlacelists(event.currentTarget.value))}
+          />
+        </CardContent>
+      </Card>
 
       <Block>
         {placelists.map((placelist) => (
