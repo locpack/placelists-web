@@ -48,11 +48,6 @@ export enum RequestStatus {
 
 export const AUTH_STATUS = AuthStatus.NotAuthorized;
 
-export const OAUTH_GITHUB_CLIENT_SECRET = "bdeb80e116381bb85936298d481e603d55763560";
-export const OAUTH_GITHUB_CLIENT_ID = "Iv23liStuMnpfUD6n3my";
-
-export const FRONTEND_URL = "http://localhost:80";
-
 export const BACKEND_URL = "https://jsonplaceholder.typicode.com";
 export const REQUEST_TIMEOUT = 5000;
 export const TOKEN_KEY_NAME = "placelists-token";

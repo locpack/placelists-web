@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 80,
+    port: 8000,
   },
   resolve: {
     alias: {

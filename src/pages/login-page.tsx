@@ -1,38 +1,40 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FRONTEND_URL, OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET, Path } from "@/settings";
+import { OAUTH_GITHUB_CLIENT_ID } from "@/settings";
 import { Label } from "@radix-ui/react-menubar";
 import axios from "axios";
-import { useEffect } from "react";
 import { useSearchParams } from "react-router";
 
 function LoginPage() {
   const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    const code = searchParams.get("code");
-    if (!code) {
-      return;
-    }
+  // useEffect(() => {
+  //   const code = searchParams.get("code");
+  //   if (!code) {
+  //     return;
+  //   }
 
-    axios.post("https://github.com/login/oauth/access_token", {
-      params: {
-        client_id: OAUTH_GITHUB_CLIENT_ID,
-        client_secret: OAUTH_GITHUB_CLIENT_SECRET,
-        code: code,
-      },
-      headers: {
-        Acceps: "application/json",
-      },
-    });
-  }, []);
+  //   axios.post("https://github.com/login/oauth/access_token", {
+  //     params: {
+  //       client_id: OAUTH_GITHUB_CLIENT_ID,
+  //       client_secret: OAUTH_GITHUB_CLIENT_SECRET,
+  //       code: code,
+  //     },
+  //     headers: {
+  //       Acceps: "application/json",
+  //     },
+  //   });
+  // }, []);
 
   function loginWithGithub() {
     axios.get("https://github.com/login/oauth/authorize", {
       params: {
         client_id: OAUTH_GITHUB_CLIENT_ID,
-        redirect_uri: `${FRONTEND_URL}/${Path.Login}`,
+        // redirect_uri: `${FRONTEND_URL}/${Path.Login}`,
       },
+      // headers: {
+      //   "Access-Control-Allow-Origin": "*",
+      // },
     });
   }
 
