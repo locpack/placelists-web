@@ -1,6 +1,4 @@
 import { nanoid } from "nanoid";
-import { Place } from "./types/place";
-import { Placelist } from "./types/placelist";
 
 export enum ButtonType {
   Primary,
@@ -34,12 +32,6 @@ export enum Namespace {
   Place = "Place",
 }
 
-export enum ApiRoute {
-  Login = "/login",
-  Logout = "/logout",
-  Placelists = "/placelsts",
-}
-
 export enum RequestStatus {
   Pending,
   Fulfilled,
@@ -48,12 +40,9 @@ export enum RequestStatus {
 
 export const AUTH_STATUS = AuthStatus.NotAuthorized;
 
-export const OAUTH_GITHUB_CLIENT_SECRET = "bdeb80e116381bb85936298d481e603d55763560";
-export const OAUTH_GITHUB_CLIENT_ID = "Iv23liStuMnpfUD6n3my";
-
 export const FRONTEND_URL = "http://localhost:80";
 
-export const BACKEND_URL = "https://jsonplaceholder.typicode.com";
+export const BACKEND_URL = "http://localhost:8082";
 export const REQUEST_TIMEOUT = 5000;
 export const TOKEN_KEY_NAME = "placelists-token";
 
@@ -65,41 +54,3 @@ export const USER = {
 };
 
 export const MENU_HIDDEN = false;
-
-export const DISCOVER_PAGE_PLACELISTS: Placelist[] = [
-  {
-    id: nanoid(8),
-    name: "First",
-    author: { id: nanoid(8), name: "Mathew" },
-  },
-  {
-    id: nanoid(8),
-    name: "Second",
-    author: { id: nanoid(8), name: "Collin" },
-  },
-  {
-    id: nanoid(8),
-    name: "Third",
-    author: { id: nanoid(8), name: "Andrew" },
-  },
-  {
-    id: nanoid(8),
-    name: "Fourth",
-    author: { id: nanoid(8), name: "Ewrin" },
-  },
-];
-
-export const PLACELIST_PAGE_PLACES: Place[] = [
-  { id: nanoid(8), name: "First", address: "Mayer st. 23", visited: true },
-  { id: nanoid(8), name: "Second", address: "Frunze 2", visited: true },
-  { id: nanoid(8), name: "Third", address: "Adawda aw 1", visited: true },
-  { id: nanoid(8), name: "First", address: "Mayer st. 23", visited: false },
-  { id: nanoid(8), name: "Second", address: "Frunze 2", visited: false },
-  { id: nanoid(8), name: "Third", address: "Adawda aw 1", visited: true },
-];
-
-export const PLACELIST: Placelist = {
-  id: nanoid(8),
-  name: "First",
-  author: { id: nanoid(8), name: "selfisher" },
-};

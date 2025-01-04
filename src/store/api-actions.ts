@@ -1,8 +1,9 @@
 import { Place } from "@/types/place";
+import { MultipleResponseWrapper, SingleResponseWrapper } from "@/types/response";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
 import { deleteToken, setToken } from "../services/token-service";
-import { ApiRoute, DISCOVER_PAGE_PLACELISTS, Namespace, PLACELIST, PLACELIST_PAGE_PLACES } from "../settings";
+import { Namespace } from "../settings";
 import { Placelist, PlacelistWithPlaces } from "../types/placelist";
 import { UserIdentity, UserLogin } from "../types/user";
 
@@ -10,18 +11,10 @@ type ThunkApiConfig = {
   extra: AxiosInstance;
 };
 
-export const checkAuth = createAsyncThunk<UserIdentity, undefined, ThunkApiConfig>(
-  `${Namespace.User}/checkAuth`,
-  async (_arg, { extra: api }) => {
-    const { data } = await api.get<UserIdentity>(ApiRoute.Login);
-    return data;
-  }
-);
-
 export const login = createAsyncThunk<UserIdentity, UserLogin, ThunkApiConfig>(
   `${Namespace.User}/login`,
   async (userLogin: UserLogin, { extra: api }) => {
-    const { data } = await api.post<UserIdentity>(ApiRoute.Login, userLogin);
+    const { data } = await api.post<UserIdentity>("ApiRoute.Login", userLogin);
     setToken(data.token);
     return data;
   }
@@ -30,42 +23,38 @@ export const login = createAsyncThunk<UserIdentity, UserLogin, ThunkApiConfig>(
 export const logout = createAsyncThunk<void, undefined, ThunkApiConfig>(
   `${Namespace.User}/logout`,
   async (_arg, { extra: api }) => {
-    await api.delete(ApiRoute.Logout);
+    await api.delete("ApiRoute.Login");
     deleteToken();
   }
 );
 
-export const fetchPlacelists = createAsyncThunk<Placelist[], string, ThunkApiConfig>(
+export const fetchPlacelists = createAsyncThunk<MultipleResponseWrapper<Placelist>, string, ThunkApiConfig>(
   `${Namespace.Placelists}/fetch`,
   async (query: string, { extra: api }) => {
-    // const { data } = await api.get<PlacelistCompressed[]>(ApiRoute.Placelists, {
-    //   params: {
-    //     query,
-    //   },
-    // });
-    const data = DISCOVER_PAGE_PLACELISTS.filter(
-      (placelist) =>
-        placelist.author.name.toLowerCase().includes(query.toLowerCase()) ||
-        placelist.name.toLowerCase().includes(query.toLowerCase())
-    );
+    const { data } = await api.get<MultipleResponseWrapper<Placelist>>("/api/v1/placelists", {
+      params: {
+        query,
+      },
+    });
     return data;
   }
 );
 
-export const fetchPlacelist = createAsyncThunk<PlacelistWithPlaces, Placelist["id"], ThunkApiConfig>(
-  `${Namespace.Placelist}/fetch`,
-  async (placelistId, { extra: api }) => {
-    //const { data } = await api.get<Placelist>(`${ApiRoute.Placelists}/${placelistId}`);
-    const data = { placelist: PLACELIST, places: PLACELIST_PAGE_PLACES };
-    return data;
-  }
-);
+export const fetchPlacelist = createAsyncThunk<
+  SingleResponseWrapper<PlacelistWithPlaces>,
+  PlacelistWithPlaces["id"],
+  ThunkApiConfig
+>(`${Namespace.Placelist}/fetch`, async (placelistId, { extra: api }) => {
+  const { data } = await api.get<SingleResponseWrapper<PlacelistWithPlaces>>(
+    `/api/v1/placelists/${placelistId}`
+  );
+  return data;
+});
 
-export const updatePlace = createAsyncThunk<Place, Place, ThunkApiConfig>(
-  `${Namespace.Place}/update`,
-  async (place, { extra: api }) => {
-    //const { data } = await api.get<Placelist>(`${ApiRoute.Placelists}/${placelistId}`);
-    const data = place;
+export const visitPlace = createAsyncThunk<SingleResponseWrapper<Place>, Place["id"], ThunkApiConfig>(
+  `${Namespace.Place}/visit`,
+  async (placeId, { extra: api }) => {
+    const { data } = await api.put<SingleResponseWrapper<Place>>(`/api/v1/places/${placeId}/visit`);
     return data;
   }
 );

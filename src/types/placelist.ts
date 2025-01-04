@@ -1,13 +1,11 @@
 import { Place } from "./place";
-import { UserCompressed } from "./user";
 
 export interface Placelist {
   id: string;
   name: string;
-  author: UserCompressed;
+  authorUsername?: string;
 }
 
-export interface PlacelistWithPlaces {
-  placelist: Placelist;
+export interface PlacelistWithPlaces extends Placelist {
   places: Place[];
 }

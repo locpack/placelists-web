@@ -34,7 +34,7 @@ function DiscoverPage() {
           >
             <CardHeader>
               <CardTitle>{placelist.name}</CardTitle>
-              <CardDescription>{placelist.author.name}</CardDescription>
+              <CardDescription>{placelist.authorUsername ?? "Author not found"}</CardDescription>
             </CardHeader>
           </Card>
         ))}

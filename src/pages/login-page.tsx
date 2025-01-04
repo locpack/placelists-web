@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FRONTEND_URL, OAUTH_GITHUB_CLIENT_ID, OAUTH_GITHUB_CLIENT_SECRET, Path } from "@/settings";
+import { FRONTEND_URL, Path } from "@/settings";
 import { Label } from "@radix-ui/react-menubar";
 import axios from "axios";
 import { useEffect } from "react";
@@ -17,8 +17,8 @@ function LoginPage() {
 
     axios.post("https://github.com/login/oauth/access_token", {
       params: {
-        client_id: OAUTH_GITHUB_CLIENT_ID,
-        client_secret: OAUTH_GITHUB_CLIENT_SECRET,
+        client_id: "OAUTH_GITHUB_CLIENT_ID",
+        client_secret: "OAUTH_GITHUB_CLIENT_SECRET",
         code: code,
       },
       headers: {

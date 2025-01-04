@@ -1,7 +1,8 @@
+import { Placelist } from "@/types/placelist";
 import { createReducer } from "@reduxjs/toolkit";
 import { AuthStatus, RequestStatus } from "../settings";
 import { InitialState } from "../types/redux";
-import { checkAuth, fetchPlacelist, fetchPlacelists, login, logout, updatePlace } from "./api-actions";
+import { fetchPlacelist, fetchPlacelists, login, logout, visitPlace } from "./api-actions";
 
 const initialState: InitialState = {
   authStatus: AuthStatus.Unknown,
@@ -15,17 +16,6 @@ const initialState: InitialState = {
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(checkAuth.pending, (state) => {
-      state.authStatus = AuthStatus.Unknown;
-    })
-    .addCase(checkAuth.fulfilled, (state, action) => {
-      state.user = action.payload;
-      state.authStatus = AuthStatus.Authorized;
-    })
-    .addCase(checkAuth.rejected, (state) => {
-      state.user = null;
-      state.authStatus = AuthStatus.NotAuthorized;
-    })
     .addCase(login.fulfilled, (state, action) => {
       state.user = action.payload;
       state.authStatus = AuthStatus.Authorized;
@@ -43,7 +33,7 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchPlacelists.fulfilled, (state, action) => {
       state.fetchingPlacelistsStatus = RequestStatus.Fulfilled;
-      state.placelists = action.payload;
+      state.placelists = action.payload.data;
     })
     .addCase(fetchPlacelists.rejected, (state) => {
       state.fetchingPlacelistsStatus = RequestStatus.Error;
@@ -52,24 +42,34 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(fetchPlacelist.pending, (state) => {
       state.fetchingPlacelistStatus = RequestStatus.Pending;
       state.placelist = null;
+      state.places = [];
     })
     .addCase(fetchPlacelist.fulfilled, (state, action) => {
       state.fetchingPlacelistStatus = RequestStatus.Fulfilled;
-      state.placelist = action.payload.placelist;
-      state.places = action.payload.places;
+      state.placelist = action.payload.data! as Placelist;
+      state.places = action.payload.data!.places;
     })
     .addCase(fetchPlacelist.rejected, (state) => {
       state.fetchingPlacelistStatus = RequestStatus.Error;
       state.placelist = null;
       state.places = [];
     })
-    .addCase(updatePlace.fulfilled, (state, action) => {
-      const index = state.places.findIndex((place) => place.id === action.payload.id);
+    // .addCase(visitPlace.fulfilled, (state, action) => {
+    //   const index = state.places.findIndex((place) => place.id === action.payload.data!.id);
+    //   state.places[index] = {
+    //     ...state.places[index],
+    //     name: action.payload.name,
+    //     address: action.payload.address,
+    //     visited: action.payload.visited,
+    //   };
+    // })
+    .addCase(visitPlace.fulfilled, (state, action) => {
+      const index = 0;
       state.places[index] = {
         ...state.places[index],
-        name: action.payload.name,
-        address: action.payload.address,
-        visited: action.payload.visited,
+        name: action.payload.data!.name,
+        address: action.payload.data!.address,
+        visited: action.payload.data!.visited,
       };
     });
 });
