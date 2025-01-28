@@ -11,8 +11,6 @@ import PlacelistPage from "./pages/placelist-page";
 import { Path } from "./settings";
 import { store } from "./store/main";
 
-// store.dispatch(checkAuth());
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>

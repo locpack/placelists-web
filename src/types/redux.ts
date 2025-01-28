@@ -1,14 +1,12 @@
-import { AuthStatus, RequestStatus } from "../settings";
-import { Place } from "./place";
-import { Placelist } from "./placelist";
-import { UserIdentity } from "./user";
+import { AuthStatus } from "@/settings";
+import { AxiosInstance } from "axios";
 
-export interface InitialState {
-  user: UserIdentity | null;
+export type ThunkApiConfig = {
+  extra: AxiosInstance;
+};
+
+export interface OauthInitialState {
+  token: string | null;
   authStatus: AuthStatus;
-  fetchingPlacelistsStatus: RequestStatus;
-  fetchingPlacelistStatus: RequestStatus;
-  placelists: Placelist[];
-  placelist: Placelist | null;
-  places: Place[];
+  loading: boolean;
 }

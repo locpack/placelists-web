@@ -1,8 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createApi } from "../services/api-service";
-import { reducer } from "./reducer";
+import { oauthReducer } from "./reducers/oauth-reducer";
 
-const api = createApi();
+export const api = createApi();
+
+const reducer = combineReducers({
+  oauth: oauthReducer,
+});
 
 export const store = configureStore({
   reducer,
