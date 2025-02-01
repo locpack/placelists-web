@@ -1,11 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createApi } from "../services/api-service";
-import { oauthReducer } from "./reducers/oauth-reducer";
+import { userReducer } from "./reducers/user-reducer";
 
 export const api = createApi();
 
 const reducer = combineReducers({
-  oauth: oauthReducer,
+  user: userReducer,
 });
 
 export const store = configureStore({

@@ -1,12 +1,11 @@
-import { AuthStatus } from "@/settings";
 import { AxiosInstance } from "axios";
+import { User } from "./user";
 
 export type ThunkApiConfig = {
   extra: AxiosInstance;
 };
 
-export interface OauthInitialState {
-  token: string | null;
-  authStatus: AuthStatus;
+export interface InitialUserState {
+  user: User | null;
   loading: boolean;
 }
