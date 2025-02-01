@@ -2,16 +2,17 @@ import { Block } from "@/components/ui/block";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { clearPlaces } from "@/store/actions/place-actions";
 import {
   getPlacelistById,
   getPlacelistPlacesById,
   updatePlacelistPlacesById,
-} from "@/store/api-actions/placelist-actions";
+} from "@/store/api-actions/placelist-api-actions";
 import { WrappedRequest } from "@/types/api";
 import { Id } from "@/types/common";
 import { Place } from "@/types/place";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 
 function PlacelistPage() {
@@ -20,6 +21,7 @@ function PlacelistPage() {
   const places = useAppSelector((state) => state.places);
 
   const { id } = useParams();
+  const navigate = useNavigate();
   const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
@@ -70,7 +72,15 @@ function PlacelistPage() {
             <Card>
               <CardContent className="flex flex-col pt-6 gap-4">
                 <Progress value={progress} />
-                <Button className="flex flex-1-1">Add Place</Button>
+                <Button
+                  className="flex flex-1-1"
+                  onClick={() => {
+                    dispatch(clearPlaces());
+                    navigate("./add-place");
+                  }}
+                >
+                  Add Place
+                </Button>
               </CardContent>
             </Card>
           </Block>

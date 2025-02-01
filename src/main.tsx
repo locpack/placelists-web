@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router";
 import App from "./app";
 import "./index.css";
+import AddPlacePage from "./pages/add-place-page";
 import DiscoverPage from "./pages/discover-page";
 import ErrorPage from "./pages/error-page";
 import LoginPage from "./pages/login-page";
@@ -19,8 +20,8 @@ createRoot(document.getElementById("root")!).render(
           <Route path={Path.Home} element={<App />}>
             <Route index element={<DiscoverPage />} />
             <Route path={`${Path.Placelists}/:id`} element={<PlacelistPage />} />
+            <Route path={`${Path.Placelists}/:id/add-place`} element={<AddPlacePage />} />
             <Route path={Path.Login} element={<LoginPage />} />
-            {/* <Route path={Path.Profile} element={<ProfilePage />} /> */}
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

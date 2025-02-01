@@ -8,24 +8,12 @@ export type ThunkApiConfig = {
   extra: AxiosInstance;
 };
 
-interface BaseState {
+export interface InitialState {
+  user: User | null;
+  placelist: Placelist | null;
+  placelists: Placelist[];
+  place: Place | null;
+  places: Place[];
   loading: boolean;
   errors: Error[];
 }
-
-export interface InitialUserState extends BaseState {
-  user: User | null;
-}
-
-export interface InitialPlacelistState extends BaseState {
-  placelist: Placelist | null;
-  placelists: Placelist[];
-  places: Place[];
-}
-
-export interface InitialPlaceState extends BaseState {
-  place: Place | null;
-  places: Place[];
-}
-
-export interface InitialAppState extends InitialUserState, InitialPlacelistState, InitialPlaceState {}

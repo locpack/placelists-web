@@ -1,17 +1,8 @@
-import { InitialAppState } from "@/types/redux";
-import { Action, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { createApi } from "../services/api-service";
-import { placeReducer } from "./reducers/place-reducer";
-import { placelistReducer } from "./reducers/placelist-reducer";
-import { userReducer } from "./reducers/user-reducer";
+import { reducer } from "./reducer";
 
 export const api = createApi();
-
-const reducer = (state: InitialAppState | undefined, action: Action) => ({
-  ...userReducer(state, action),
-  ...placeReducer(state, action),
-  ...placelistReducer(state, action),
-});
 
 export const store = configureStore({
   reducer,

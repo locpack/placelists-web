@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { Path } from "@/settings";
-import { getPlacelistsByQuery } from "@/store/api-actions/placelist-actions";
+import { getPlacelistsByQuery } from "@/store/api-actions/placelist-api-actions";
 import { useNavigate } from "react-router";
 
 function DiscoverPage() {
