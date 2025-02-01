@@ -4,3 +4,14 @@ export interface Place {
   address: string;
   visited: boolean;
 }
+
+export interface PlaceCreate {
+  name: string;
+  address: string;
+}
+
+export interface PlaceUpdate {
+  name: string;
+  address: string;
+  visited: boolean;
+}

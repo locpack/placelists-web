@@ -1,16 +1,7 @@
-export interface UserIdentity {
-  id: string;
+export interface User {
   username: string;
-  email: string;
-  token: string;
 }
 
-export interface UserLogin {
-  email: string;
-  password: string;
-}
-
-export interface UserCompressed {
-  id: string;
-  name: string;
+export interface UserUpdate {
+  username: string;
 }

@@ -1,11 +1,13 @@
-import { Place } from "./place";
-
 export interface Placelist {
   id: string;
   name: string;
-  authorUsername?: string;
+  author_username?: string;
 }
 
-export interface PlacelistWithPlaces extends Placelist {
-  places: Place[];
+export interface PlacelistCreate {
+  name: string;
+}
+
+export interface PlacelistUpdate {
+  name: string;
 }
