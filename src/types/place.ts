@@ -1,17 +1,20 @@
+export type PlaceContent = string;
+
 export interface Place {
   id: string;
-  name: string;
-  address: string;
+  name: PlaceContent;
+  address: PlaceContent;
   visited: boolean;
 }
 
 export interface PlaceCreate {
-  name: string;
-  address: string;
+  name: PlaceContent;
+  address: PlaceContent;
 }
 
 export interface PlaceUpdate {
-  name: string;
-  address: string;
+  id: string;
+  name: PlaceContent;
+  address: PlaceContent;
   visited: boolean;
 }

@@ -4,7 +4,7 @@ import { SingleResponseWrapper } from "@/types/response";
 import { User, UserUpdate } from "@/types/user";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getUserByUsername = createAsyncThunk<User, string, ThunkApiConfig>(
+export const getUserByUsername = createAsyncThunk<User, User["username"], ThunkApiConfig>(
   `${Namespace.Users}/get/byUsername`,
   async (username, { rejectWithValue, extra: api }) => {
     const requestUrl = `${BACKEND_URL}/api/v1/users/${username}`;
