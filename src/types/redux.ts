@@ -27,3 +27,5 @@ export interface InitialPlaceState extends BaseState {
   place: Place | null;
   places: Place[];
 }
+
+export interface InitialAppState extends InitialUserState, InitialPlacelistState, InitialPlaceState {}

@@ -1,5 +1,6 @@
 import { BACKEND_URL, Namespace } from "@/settings";
 import { MultipleResponseWrapper, SingleResponseWrapper, WrappedRequest } from "@/types/api";
+import { Id } from "@/types/common";
 import { Place } from "@/types/place";
 import { Placelist, PlacelistContent, PlacelistCreate, PlacelistUpdate } from "@/types/placelist";
 import { ThunkApiConfig } from "@/types/redux";
@@ -34,7 +35,7 @@ export const createPlacelist = createAsyncThunk<Placelist, PlacelistCreate, Thun
   }
 );
 
-export const getPlacelistById = createAsyncThunk<Placelist, Placelist["id"], ThunkApiConfig>(
+export const getPlacelistById = createAsyncThunk<Placelist, Id, ThunkApiConfig>(
   `${Namespace.Placelists}/get/byId`,
   async (placelistId, { rejectWithValue, extra: api }) => {
     const requestUrl = `${BACKEND_URL}/api/v1/placelists/${placelistId}`;
@@ -48,7 +49,7 @@ export const getPlacelistById = createAsyncThunk<Placelist, Placelist["id"], Thu
   }
 );
 
-export const getPlacelistPlacesById = createAsyncThunk<Place[], Placelist["id"], ThunkApiConfig>(
+export const getPlacelistPlacesById = createAsyncThunk<Place[], Id, ThunkApiConfig>(
   `${Namespace.Placelists}/get/places`,
   async (placelistId, { rejectWithValue, extra: api }) => {
     const requestUrl = `${BACKEND_URL}/api/v1/placelists/${placelistId}/places`;
@@ -65,7 +66,7 @@ export const getPlacelistPlacesById = createAsyncThunk<Place[], Placelist["id"],
 export const updatePlacelistPlacesById = createAsyncThunk<Place[], WrappedRequest<Place[]>, ThunkApiConfig>(
   `${Namespace.Placelists}/update/places`,
   async (placelistPlacesUpdate, { rejectWithValue, extra: api }) => {
-    const requestUrl = `${BACKEND_URL}/api/v1/placelists/${placelistPlacesUpdate.id}`;
+    const requestUrl = `${BACKEND_URL}/api/v1/placelists/${placelistPlacesUpdate.id}/places`;
     const { data } = await api.put<MultipleResponseWrapper<Place>>(requestUrl, placelistPlacesUpdate.data);
 
     if (!data.data || !data.meta.success) {
@@ -91,7 +92,7 @@ export const updatePlacelistById = createAsyncThunk<
   return data.data;
 });
 
-export const deletePlacelistById = createAsyncThunk<void, Placelist["id"], ThunkApiConfig>(
+export const deletePlacelistById = createAsyncThunk<void, Id, ThunkApiConfig>(
   `${Namespace.Placelists}/delete`,
   async (placelistId, { rejectWithValue, extra: api }) => {
     const requestUrl = `${BACKEND_URL}/api/v1/placelists/${placelistId}`;

@@ -2,7 +2,13 @@ import { Block } from "@/components/ui/block";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { fetchPlacelist, visitPlace } from "@/store/api-actions";
+import {
+  getPlacelistById,
+  getPlacelistPlacesById,
+  updatePlacelistPlacesById,
+} from "@/store/api-actions/placelist-actions";
+import { WrappedRequest } from "@/types/api";
+import { Id } from "@/types/common";
 import { Place } from "@/types/place";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -10,14 +16,16 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux";
 
 function PlacelistPage() {
   const dispatch = useAppDispatch();
-  const { id } = useParams();
   const placelist = useAppSelector((state) => state.placelist);
   const places = useAppSelector((state) => state.places);
+
+  const { id } = useParams();
   const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchPlacelist(id));
+      dispatch(getPlacelistById(id));
+      dispatch(getPlacelistPlacesById(id));
     }
   }, [dispatch, id]);
 
@@ -25,8 +33,17 @@ function PlacelistPage() {
     updateProgress();
   }, [places]);
 
-  function handleClick(placeId: Place["id"]) {
-    dispatch(visitPlace(placeId));
+  function handleClick(placeId: Id) {
+    const updatedPlaces = places.map((place) => ({
+      ...place,
+      visited: place.id === placeId ? !place.visited : place.visited,
+    }));
+
+    const placelistPlacesUpdate: WrappedRequest<Place[]> = {
+      id: placeId,
+      data: updatedPlaces,
+    };
+    dispatch(updatePlacelistPlacesById(placelistPlacesUpdate));
   }
 
   function updateProgress() {

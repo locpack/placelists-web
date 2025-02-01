@@ -1,5 +1,6 @@
 import { BACKEND_URL, Namespace } from "@/settings";
 import { MultipleResponseWrapper, SingleResponseWrapper, WrappedRequest } from "@/types/api";
+import { Id } from "@/types/common";
 import { Place, PlaceContent, PlaceCreate, PlaceUpdate } from "@/types/place";
 import { ThunkApiConfig } from "@/types/redux";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -33,7 +34,7 @@ export const createPlace = createAsyncThunk<Place, PlaceCreate, ThunkApiConfig>(
   }
 );
 
-export const getPlaceById = createAsyncThunk<Place, Place["id"], ThunkApiConfig>(
+export const getPlaceById = createAsyncThunk<Place, Id, ThunkApiConfig>(
   `${Namespace.Places}/get/byId`,
   async (placeId, { rejectWithValue, extra: api }) => {
     const requestUrl = `${BACKEND_URL}/api/v1/places/${placeId}`;

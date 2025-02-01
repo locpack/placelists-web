@@ -8,7 +8,8 @@ import { useNavigate } from "react-router";
 
 function DiscoverPage() {
   const dispatch = useAppDispatch();
-  const placelists = useAppSelector((state) => state.placelist.placelists);
+  const placelists = useAppSelector((state) => state.placelists);
+
   const navigate = useNavigate();
 
   return (
