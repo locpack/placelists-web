@@ -3,12 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { Path } from "@/settings";
-import { fetchPlacelists } from "@/store/api-actions";
+import { getPlacelistsByQuery } from "@/store/api-actions/placelist-actions";
 import { useNavigate } from "react-router";
 
 function DiscoverPage() {
   const dispatch = useAppDispatch();
-  const placelists = useAppSelector((state) => state.placelists);
+  const placelists = useAppSelector((state) => state.placelist.placelists);
   const navigate = useNavigate();
 
   return (
@@ -20,7 +20,7 @@ function DiscoverPage() {
           <Input
             placeholder="Search"
             type="text"
-            onInput={(event) => dispatch(fetchPlacelists(event.currentTarget.value))}
+            onInput={(event) => dispatch(getPlacelistsByQuery(event.currentTarget.value))}
           />
         </CardContent>
       </Card>
