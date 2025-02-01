@@ -1,10 +1,12 @@
 import { InitialUserState } from "@/types/redux";
 import { createReducer } from "@reduxjs/toolkit";
 import { getUserByUsername, updateUserByUsername } from "../api-actions/user-actions";
+import { Error } from "./../../types/common";
 
 const initialState: InitialUserState = {
   user: null,
   loading: false,
+  errors: [],
 };
 
 export const userReducer = createReducer(initialState, (builder) => {
@@ -15,10 +17,12 @@ export const userReducer = createReducer(initialState, (builder) => {
     .addCase(getUserByUsername.fulfilled, (state, action) => {
       state.user = action.payload;
       state.loading = false;
+      state.errors = [];
     })
-    .addCase(getUserByUsername.rejected, (state) => {
+    .addCase(getUserByUsername.rejected, (state, action) => {
       state.user = null;
       state.loading = false;
+      state.errors = action.payload as Error[];
     })
     .addCase(updateUserByUsername.pending, (state) => {
       state.loading = true;
@@ -26,9 +30,11 @@ export const userReducer = createReducer(initialState, (builder) => {
     .addCase(updateUserByUsername.fulfilled, (state, action) => {
       state.user = action.payload;
       state.loading = false;
+      state.errors = [];
     })
-    .addCase(updateUserByUsername.rejected, (state) => {
+    .addCase(updateUserByUsername.rejected, (state, action) => {
       state.user = null;
       state.loading = false;
+      state.errors = action.payload as Error[];
     });
 });

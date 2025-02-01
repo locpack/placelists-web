@@ -1,12 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createApi } from "../services/api-service";
-import { userReducer } from "./reducers/user-reducer";
 import { placeReducer } from "./reducers/place-reducer";
+import { placelistReducer } from "./reducers/placelist-reducer";
+import { userReducer } from "./reducers/user-reducer";
 
 export const api = createApi();
 
 const reducer = combineReducers({
   user: userReducer,
+  placelist: placelistReducer,
   place: placeReducer,
 });
 

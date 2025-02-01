@@ -1,7 +1,7 @@
 import { BACKEND_URL, Namespace } from "@/settings";
+import { MultipleResponseWrapper, SingleResponseWrapper, WrappedRequest } from "@/types/api";
 import { Place, PlaceContent, PlaceCreate, PlaceUpdate } from "@/types/place";
 import { ThunkApiConfig } from "@/types/redux";
-import { MultipleResponseWrapper, SingleResponseWrapper } from "@/types/response";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getPlacesByQuery = createAsyncThunk<Place[], PlaceContent, ThunkApiConfig>(
@@ -47,11 +47,11 @@ export const getPlaceById = createAsyncThunk<Place, Place["id"], ThunkApiConfig>
   }
 );
 
-export const updatePlaceById = createAsyncThunk<Place, PlaceUpdate, ThunkApiConfig>(
-  `${Namespace.Places}/update/byId`,
+export const updatePlaceById = createAsyncThunk<Place, WrappedRequest<PlaceUpdate>, ThunkApiConfig>(
+  `${Namespace.Places}/update`,
   async (placeUpdate, { rejectWithValue, extra: api }) => {
     const requestUrl = `${BACKEND_URL}/api/v1/places/${placeUpdate.id}`;
-    const { data } = await api.put<SingleResponseWrapper<Place>>(requestUrl, placeUpdate);
+    const { data } = await api.put<SingleResponseWrapper<Place>>(requestUrl, placeUpdate.data);
 
     if (!data.data || !data.meta.success) {
       return rejectWithValue(data.errors);

@@ -1,13 +1,17 @@
+import { Id } from "./common";
+
+export type PlacelistContent = string;
+
 export interface Placelist {
-  id: string;
-  name: string;
-  author_username?: string;
+  id: Id;
+  name: PlacelistContent;
+  authorUsername: PlacelistContent | null;
 }
 
 export interface PlacelistCreate {
-  name: string;
+  name: PlacelistContent;
 }
 
 export interface PlacelistUpdate {
-  name: string;
+  name: PlacelistContent;
 }

@@ -1,6 +1,6 @@
 import { BACKEND_URL, Namespace } from "@/settings";
+import { SingleResponseWrapper, WrappedRequest } from "@/types/api";
 import { ThunkApiConfig } from "@/types/redux";
-import { SingleResponseWrapper } from "@/types/response";
 import { User, UserUpdate } from "@/types/user";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -18,11 +18,11 @@ export const getUserByUsername = createAsyncThunk<User, User["username"], ThunkA
   }
 );
 
-export const updateUserByUsername = createAsyncThunk<User, UserUpdate, ThunkApiConfig>(
-  `${Namespace.Users}/update/byUsername`,
+export const updateUserByUsername = createAsyncThunk<User, WrappedRequest<UserUpdate>, ThunkApiConfig>(
+  `${Namespace.Users}/update`,
   async (userUpdate, { rejectWithValue, extra: api }) => {
-    const requestUrl = `${BACKEND_URL}/api/v1/users/${userUpdate.username}`;
-    const { data } = await api.put<SingleResponseWrapper<User>>(requestUrl, userUpdate);
+    const requestUrl = `${BACKEND_URL}/api/v1/users/${userUpdate.id}`;
+    const { data } = await api.put<SingleResponseWrapper<User>>(requestUrl, userUpdate.data);
 
     if (!data.data || !data.meta.success) {
       return rejectWithValue(data.errors);

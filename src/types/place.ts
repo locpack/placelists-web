@@ -1,7 +1,9 @@
+import { Id } from "./common";
+
 export type PlaceContent = string;
 
 export interface Place {
-  id: string;
+  id: Id;
   name: PlaceContent;
   address: PlaceContent;
   visited: boolean;
@@ -13,7 +15,6 @@ export interface PlaceCreate {
 }
 
 export interface PlaceUpdate {
-  id: string;
   name: PlaceContent;
   address: PlaceContent;
   visited: boolean;
