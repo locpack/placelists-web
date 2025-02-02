@@ -21,6 +21,20 @@ export const getPlacelistsByQuery = createAsyncThunk<Placelist[], PlacelistConte
   }
 );
 
+export const getPlacelistsMy = createAsyncThunk<Placelist[], undefined, ThunkApiConfig>(
+  `${Namespace.Placelists}/get/my`,
+  async (_, { rejectWithValue, extra: api }) => {
+    const requestUrl = `${BACKEND_URL}/api/v1/placelists/my`;
+    const { data } = await api.get<MultipleResponseWrapper<Placelist>>(requestUrl);
+
+    if (!data.data || !data.meta.success) {
+      return rejectWithValue(data.errors);
+    }
+
+    return data.data;
+  }
+);
+
 export const createPlacelist = createAsyncThunk<Placelist, PlacelistCreate, ThunkApiConfig>(
   `${Namespace.Placelists}/create`,
   async (placelistCreate, { rejectWithValue, extra: api }) => {

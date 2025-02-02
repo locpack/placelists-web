@@ -2,7 +2,6 @@ import { Block } from "@/components/ui/block";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { clearPlaces } from "@/store/actions/place-actions";
 import {
   getPlacelistById,
   getPlacelistPlacesById,
@@ -72,13 +71,7 @@ function PlacelistPage() {
             <Card>
               <CardContent className="flex flex-col pt-6 gap-4">
                 <Progress value={progress} />
-                <Button
-                  className="flex flex-1-1"
-                  onClick={() => {
-                    dispatch(clearPlaces());
-                    navigate("./add-place");
-                  }}
-                >
+                <Button className="flex flex-1-1" onClick={() => navigate("./add-place")}>
                   Add Place
                 </Button>
               </CardContent>

@@ -12,10 +12,11 @@ import {
   getPlacelistById,
   getPlacelistPlacesById,
   getPlacelistsByQuery,
+  getPlacelistsMy,
   updatePlacelistById,
   updatePlacelistPlacesById,
 } from "./api-actions/placelist-api-actions";
-import { getUserByUsername, updateUserByUsername } from "./api-actions/user-api-actions";
+import { getUserByUsername, getUserMy, updateUserByUsername } from "./api-actions/user-api-actions";
 
 const initialState: InitialState = {
   user: null,
@@ -40,6 +41,19 @@ export const reducer = createReducer(initialState, (builder) => {
       state.errors = [];
     })
     .addCase(getUserByUsername.rejected, (state, action) => {
+      state.user = null;
+      state.loading = false;
+      state.errors = action.payload as Error[];
+    })
+    .addCase(getUserMy.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(getUserMy.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.loading = false;
+      state.errors = [];
+    })
+    .addCase(getUserMy.rejected, (state, action) => {
       state.user = null;
       state.loading = false;
       state.errors = action.payload as Error[];
@@ -82,6 +96,21 @@ export const reducer = createReducer(initialState, (builder) => {
       state.errors = [];
     })
     .addCase(createPlacelist.rejected, (state, action) => {
+      state.placelist = null;
+      state.placelists = [];
+      state.loading = false;
+      state.errors = action.payload as Error[];
+    })
+    .addCase(getPlacelistsMy.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(getPlacelistsMy.fulfilled, (state, action) => {
+      state.placelist = null;
+      state.placelists = action.payload;
+      state.loading = false;
+      state.errors = [];
+    })
+    .addCase(getPlacelistsMy.rejected, (state, action) => {
       state.placelist = null;
       state.placelists = [];
       state.loading = false;
