@@ -95,7 +95,7 @@ function PlacelistPage() {
                 }
                 onClick={() => handleClick(place.id)}
               >
-                <CardHeader>
+                <CardHeader className="select-none">
                   <CardTitle>{place.name}</CardTitle>
                   <CardDescription>{place.address}</CardDescription>
                 </CardHeader>

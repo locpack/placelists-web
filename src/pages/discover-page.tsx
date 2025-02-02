@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 
 function DiscoverPage() {
   const dispatch = useAppDispatch();
-  const placelists = useAppSelector((state) => state.placelists);
+  const foundPlacelists = useAppSelector((state) => state.foundPlacelists);
 
   const navigate = useNavigate();
 
@@ -27,13 +27,13 @@ function DiscoverPage() {
       </Card>
 
       <Block>
-        {placelists.map((placelist) => (
+        {foundPlacelists.map((placelist) => (
           <Card
             key={placelist.id}
             className="cursor-pointer hover:bg-secondary/90"
             onClick={() => navigate(`${Path.Placelists}/${placelist.id}`)}
           >
-            <CardHeader>
+            <CardHeader className="select-none">
               <CardTitle>{placelist.name}</CardTitle>
               <CardDescription>{placelist.authorUsername ?? "Author not found"}</CardDescription>
             </CardHeader>

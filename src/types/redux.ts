@@ -12,8 +12,10 @@ export interface InitialState {
   user: User | null;
   placelist: Placelist | null;
   placelists: Placelist[];
+  foundPlacelists: Placelist[];
   place: Place | null;
   places: Place[];
+  foundPlaces: Place[];
   loading: boolean;
   errors: Error[];
 }

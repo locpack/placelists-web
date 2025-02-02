@@ -1,7 +1,5 @@
 import { InitialState } from "@/types/redux";
 import { createReducer } from "@reduxjs/toolkit";
-import { clearPlaces } from "./actions/place-actions";
-import { clearPlacelists } from "./actions/placelist-actions";
 import {
   createPlace,
   getPlaceById,
@@ -23,8 +21,10 @@ const initialState: InitialState = {
   user: null,
   placelist: null,
   placelists: [],
+  foundPlacelists: [],
   place: null,
   places: [],
+  foundPlaces: [],
   loading: false,
   errors: [],
 };
@@ -62,13 +62,13 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getPlacelistsByQuery.fulfilled, (state, action) => {
       state.placelist = null;
-      state.placelists = action.payload;
+      state.foundPlacelists = action.payload;
       state.loading = false;
       state.errors = [];
     })
     .addCase(getPlacelistsByQuery.rejected, (state, action) => {
       state.placelist = null;
-      state.placelists = [];
+      state.foundPlacelists = [];
       state.loading = false;
       state.errors = action.payload as Error[];
     })
@@ -162,13 +162,13 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getPlacesByQuery.fulfilled, (state, action) => {
       state.place = null;
-      state.places = action.payload;
+      state.foundPlaces = action.payload;
       state.loading = false;
       state.errors = [];
     })
     .addCase(getPlacesByQuery.rejected, (state, action) => {
       state.place = null;
-      state.places = [];
+      state.foundPlaces = [];
       state.loading = false;
       state.errors = action.payload as Error[];
     })
@@ -216,11 +216,5 @@ export const reducer = createReducer(initialState, (builder) => {
       state.places = [];
       state.loading = false;
       state.errors = action.payload as Error[];
-    })
-    .addCase(clearPlacelists, (state) => {
-      state.placelists = [];
-    })
-    .addCase(clearPlaces, (state) => {
-      state.places = [];
     });
 });

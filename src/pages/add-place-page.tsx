@@ -5,20 +5,49 @@ import { Input } from "@/components/ui/input";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { Path } from "@/settings";
 import { createPlace, getPlacesByQuery } from "@/store/api-actions/place-api-actions";
+import { getPlacelistPlacesById, updatePlacelistPlacesById } from "@/store/api-actions/placelist-api-actions";
+import { WrappedRequest } from "@/types/api";
+import { Place, PlaceCreate } from "@/types/place";
 import { Label } from "@radix-ui/react-menubar";
 import { Field, Form, Formik } from "formik";
 import { useNavigate, useParams } from "react-router";
 
 function AddPlacePage() {
   const dispatch = useAppDispatch();
+  const place = useAppSelector((state) => state.place);
   const places = useAppSelector((state) => state.places);
+  const foundPlaces = useAppSelector((state) => state.foundPlaces);
 
   const { id } = useParams();
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     dispatch(setPlaces([]));
-  //   }, [dispatch]);
+  const initialFormValues: PlaceCreate = { name: "", address: "" };
+
+  function submitForm(values: PlaceCreate) {
+    dispatch(createPlace(values));
+    if (place) {
+      addPlaceToPlacelist(place);
+    }
+  }
+
+  function addPlaceToPlacelist(placeToAdd: Place) {
+    if (!id) {
+      return;
+    }
+
+    dispatch(getPlacelistPlacesById(id));
+
+    const updatePlaces: WrappedRequest<Place[]> = {
+      id,
+      data: [placeToAdd, ...places],
+    };
+    dispatch(updatePlacelistPlacesById(updatePlaces));
+    if (places.filter((place) => place.id === placeToAdd.id).length != 1) {
+      return;
+    }
+
+    navigate(`${Path.Placelists}/${id}`);
+  }
 
   return (
     <>
@@ -26,14 +55,7 @@ function AddPlacePage() {
 
       <Card>
         <CardContent className="pt-6">
-          <Formik
-            className="flex flex-col gap-6"
-            initialValues={{ name: "", address: "" }}
-            onSubmit={(values) => {
-              dispatch(createPlace(values));
-              navigate(`${Path.Placelists}/${id}`);
-            }}
-          >
+          <Formik className="flex flex-col gap-6" initialValues={initialFormValues} onSubmit={submitForm}>
             <Form className="grid gap-6">
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -80,7 +102,7 @@ function AddPlacePage() {
       </Card>
 
       <Block>
-        {places.map((place) => (
+        {foundPlaces.map((place) => (
           <Card
             key={place.id}
             className={
@@ -88,8 +110,9 @@ function AddPlacePage() {
                 ? "bg-primary text-primary-foreground cursor-pointer hover:bg-primary/90"
                 : "cursor-pointer hover:bg-secondary/90"
             }
+            onClick={() => addPlaceToPlacelist(place)}
           >
-            <CardHeader>
+            <CardHeader className="select-none">
               <CardTitle>{place.name}</CardTitle>
               <CardDescription>{place.address ?? "Address not found"}</CardDescription>
             </CardHeader>
