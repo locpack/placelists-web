@@ -1,8 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { createApi } from "../services/api-service";
-import { reducer } from "./reducer";
+import axios from "axios";
+import applyCaseMiddleware from "axios-case-converter";
+import { BACKEND_URL, REQUEST_TIMEOUT } from "@/cfg/cfg.ts";
+import { getToken } from "@/services/token.ts";
+import { reducer } from "@/store/reducer.ts";
 
-export const api = createApi();
+const api = applyCaseMiddleware(
+  axios.create({
+    baseURL: BACKEND_URL,
+    timeout: REQUEST_TIMEOUT,
+  })
+);
+
+api.interceptors.request.use((config) => {
+  const token = getToken();
+  if (token && config.headers) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 export const store = configureStore({
   reducer,

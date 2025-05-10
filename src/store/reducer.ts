@@ -1,249 +1,262 @@
-import { InitialState } from "@/types/redux";
+import type { InitialState } from "@/types/redux";
 import { createReducer } from "@reduxjs/toolkit";
-import {
-  createPlace,
-  getPlaceById,
-  getPlacesByQuery,
-  updatePlaceById,
-} from "./api-actions/place-api-actions";
-import {
-  createPlacelist,
-  deletePlacelistById,
-  getPlacelistById,
-  getPlacelistPlacesById,
-  getPlacelistsByQuery,
-  getPlacelistsMy,
-  updatePlacelistById,
-  updatePlacelistPlacesById,
-} from "./api-actions/placelist-api-actions";
-import { getUserByUsername, getUserMy, updateUserByUsername } from "./api-actions/user-api-actions";
+import { AuthStatus } from "@/enums/enums.ts";
+import { checkAuth, login, register } from "@/store/api-actions/auth.ts";
+import type { Error } from "@/types/api.ts";
 
 const initialState: InitialState = {
   user: null,
-  placelist: null,
-  placelists: [],
-  foundPlacelists: [],
-  place: null,
-  places: [],
-  foundPlaces: [],
+  auth: AuthStatus.No,
   loading: false,
   errors: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(getUserByUsername.pending, (state) => {
+    .addCase(checkAuth.pending, (state) => {
       state.loading = true;
     })
-    .addCase(getUserByUsername.fulfilled, (state, action) => {
+    .addCase(checkAuth.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errors = [];
       state.user = action.payload;
-      state.loading = false;
-      state.errors = [];
+      state.auth = AuthStatus.Yes;
     })
-    .addCase(getUserByUsername.rejected, (state, action) => {
-      state.user = null;
+    .addCase(checkAuth.rejected, (state, action) => {
       state.loading = false;
       state.errors = action.payload as Error[];
+      state.user = null;
+      state.auth = AuthStatus.No;
     })
-    .addCase(getUserMy.pending, (state) => {
+    .addCase(login.pending, (state) => {
       state.loading = true;
     })
-    .addCase(getUserMy.fulfilled, (state, action) => {
+    .addCase(login.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errors = [];
       state.user = action.payload;
-      state.loading = false;
-      state.errors = [];
+      state.auth = AuthStatus.Yes;
     })
-    .addCase(getUserMy.rejected, (state, action) => {
-      state.user = null;
+    .addCase(login.rejected, (state, action) => {
       state.loading = false;
       state.errors = action.payload as Error[];
+      state.user = null;
+      state.auth = AuthStatus.No;
     })
-    .addCase(updateUserByUsername.pending, (state) => {
+    .addCase(register.pending, (state) => {
       state.loading = true;
     })
-    .addCase(updateUserByUsername.fulfilled, (state, action) => {
+    .addCase(register.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errors = [];
       state.user = action.payload;
-      state.loading = false;
-      state.errors = [];
+      state.auth = AuthStatus.Yes;
     })
-    .addCase(updateUserByUsername.rejected, (state, action) => {
+    .addCase(register.rejected, (state, action) => {
+      state.loading = false;
+      state.errors = action.payload as Error[];
       state.user = null;
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(getPlacelistsByQuery.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(getPlacelistsByQuery.fulfilled, (state, action) => {
-      state.placelist = null;
-      state.foundPlacelists = action.payload;
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(getPlacelistsByQuery.rejected, (state, action) => {
-      state.placelist = null;
-      state.foundPlacelists = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(createPlacelist.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(createPlacelist.fulfilled, (state, action) => {
-      state.placelist = action.payload;
-      state.placelists = [];
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(createPlacelist.rejected, (state, action) => {
-      state.placelist = null;
-      state.placelists = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(getPlacelistsMy.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(getPlacelistsMy.fulfilled, (state, action) => {
-      state.placelist = null;
-      state.placelists = action.payload;
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(getPlacelistsMy.rejected, (state, action) => {
-      state.placelist = null;
-      state.placelists = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(getPlacelistById.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(getPlacelistById.fulfilled, (state, action) => {
-      state.placelist = action.payload;
-      state.placelists = [];
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(getPlacelistById.rejected, (state, action) => {
-      state.placelist = null;
-      state.placelists = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(getPlacelistPlacesById.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(getPlacelistPlacesById.fulfilled, (state, action) => {
-      state.places = action.payload;
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(getPlacelistPlacesById.rejected, (state, action) => {
-      state.places = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(updatePlacelistPlacesById.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(updatePlacelistPlacesById.fulfilled, (state, action) => {
-      state.places = action.payload;
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(updatePlacelistPlacesById.rejected, (state, action) => {
-      state.places = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(updatePlacelistById.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(updatePlacelistById.fulfilled, (state, action) => {
-      state.placelist = action.payload;
-      state.placelists = [];
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(updatePlacelistById.rejected, (state, action) => {
-      state.placelist = null;
-      state.placelists = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(deletePlacelistById.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(deletePlacelistById.fulfilled, (state) => {
-      state.placelist = null;
-      state.placelists = [];
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(deletePlacelistById.rejected, (state, action) => {
-      state.placelists = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(getPlacesByQuery.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(getPlacesByQuery.fulfilled, (state, action) => {
-      state.place = null;
-      state.foundPlaces = action.payload;
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(getPlacesByQuery.rejected, (state, action) => {
-      state.place = null;
-      state.foundPlaces = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(createPlace.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(createPlace.fulfilled, (state, action) => {
-      state.place = action.payload;
-      state.places = [];
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(createPlace.rejected, (state, action) => {
-      state.place = null;
-      state.places = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(getPlaceById.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(getPlaceById.fulfilled, (state, action) => {
-      state.place = action.payload;
-      state.places = [];
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(getPlaceById.rejected, (state, action) => {
-      state.place = null;
-      state.places = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
-    })
-    .addCase(updatePlaceById.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(updatePlaceById.fulfilled, (state, action) => {
-      state.place = action.payload;
-      state.places = [];
-      state.loading = false;
-      state.errors = [];
-    })
-    .addCase(updatePlaceById.rejected, (state, action) => {
-      state.place = null;
-      state.places = [];
-      state.loading = false;
-      state.errors = action.payload as Error[];
+      state.auth = AuthStatus.No;
     });
+  // .addCase(getUserMy.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(getUserMy.fulfilled, (state, action) => {
+  //   state.user = action.payload;
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(getUserMy.rejected, (state, action) => {
+  //   state.user = null;
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(getUserById.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(getUserById.fulfilled, (state, action) => {
+  //   state.user = action.payload;
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(getUserById.rejected, (state, action) => {
+  //   state.user = null;
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(getPacksByQuery.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(getPacksByQuery.fulfilled, (state, action) => {
+  //   state.pack = null;
+  //   state.foundPacks = action.payload;
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(getPacksByQuery.rejected, (state, action) => {
+  //   state.pack = null;
+  //   state.foundPacks = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(createPack.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(createPack.fulfilled, (state, action) => {
+  //   state.pack = action.payload;
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(createPack.rejected, (state, action) => {
+  //   state.pack = null;
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(getPacksFollowed.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(getPacksFollowed.fulfilled, (state, action) => {
+  //   state.pack = null;
+  //   state.packs = action.payload;
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(getPacksFollowed.rejected, (state, action) => {
+  //   state.pack = null;
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(getPackById.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(getPackById.fulfilled, (state, action) => {
+  //   state.pack = action.payload;
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(getPackById.rejected, (state, action) => {
+  //   state.pack = null;
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(getPlacelistPlacesById.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(getPlacelistPlacesById.fulfilled, (state, action) => {
+  //   state.places = action.payload;
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(getPlacelistPlacesById.rejected, (state, action) => {
+  //   state.places = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(updatePlacelistPlacesById.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(updatePlacelistPlacesById.fulfilled, (state, action) => {
+  //   state.places = action.payload;
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(updatePlacelistPlacesById.rejected, (state, action) => {
+  //   state.places = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(updatePackById.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(updatePackById.fulfilled, (state, action) => {
+  //   state.pack = action.payload;
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(updatePackById.rejected, (state, action) => {
+  //   state.pack = null;
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(deletePlacelistById.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(deletePlacelistById.fulfilled, (state) => {
+  //   state.pack = null;
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(deletePlacelistById.rejected, (state, action) => {
+  //   state.packs = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(getPlacesByQuery.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(getPlacesByQuery.fulfilled, (state, action) => {
+  //   state.place = null;
+  //   state.foundPlaces = action.payload;
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(getPlacesByQuery.rejected, (state, action) => {
+  //   state.place = null;
+  //   state.foundPlaces = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(createPlace.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(createPlace.fulfilled, (state, action) => {
+  //   state.place = action.payload;
+  //   state.places = [];
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(createPlace.rejected, (state, action) => {
+  //   state.place = null;
+  //   state.places = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(getPlaceById.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(getPlaceById.fulfilled, (state, action) => {
+  //   state.place = action.payload;
+  //   state.places = [];
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(getPlaceById.rejected, (state, action) => {
+  //   state.place = null;
+  //   state.places = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // })
+  // .addCase(updatePlaceById.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(updatePlaceById.fulfilled, (state, action) => {
+  //   state.place = action.payload;
+  //   state.places = [];
+  //   state.loading = false;
+  //   state.errors = [];
+  // })
+  // .addCase(updatePlaceById.rejected, (state, action) => {
+  //   state.place = null;
+  //   state.places = [];
+  //   state.loading = false;
+  //   state.errors = action.payload as ErrorPage[];
+  // });
 });

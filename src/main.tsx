@@ -1,27 +1,27 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import "@/index.css";
+import App from "@/App.tsx";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router";
-import App from "./app";
-import "./index.css";
-import AddPlacePage from "./pages/add-place-page";
-import DiscoverPage from "./pages/discover-page";
-import ErrorPage from "./pages/error-page";
-import LoginPage from "./pages/login-page";
-import PlacelistPage from "./pages/placelist-page";
-import { Path } from "./settings";
-import { store } from "./store/main";
+import ErrorPage from "@/pages/error-page.tsx";
+import { store } from "@/store/main.ts";
+import LoginPage from "@/pages/login-page.tsx";
+import RegisterPage from "@/pages/register-page.tsx";
+import { checkAuth } from "@/store/api-actions/auth.ts";
 
-createRoot(document.getElementById("root")!).render(
+const root = createRoot(document.getElementById("root")!);
+
+store.dispatch(checkAuth());
+
+root.render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path={Path.Home} element={<App />}>
-            <Route index element={<DiscoverPage />} />
-            <Route path={`${Path.Placelists}/:id`} element={<PlacelistPage />} />
-            <Route path={`${Path.Placelists}/:id/add-place`} element={<AddPlacePage />} />
-            <Route path={Path.Login} element={<LoginPage />} />
+          <Route path="/" element={<App />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

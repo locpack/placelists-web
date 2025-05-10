@@ -1,7 +1,4 @@
 export interface User {
-  username: string;
-}
-
-export interface UserUpdate {
+  id: string;
   username: string;
 }

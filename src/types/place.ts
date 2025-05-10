@@ -1,21 +1,18 @@
-import { Id } from "./common";
-
-export type PlaceContent = string;
-
 export interface Place {
-  id: Id;
-  name: PlaceContent;
-  address: PlaceContent;
+  id: string;
+  name: string;
+  address: string;
   visited: boolean;
 }
 
 export interface PlaceCreate {
-  name: PlaceContent;
-  address: PlaceContent;
+  name: string;
+  address: string;
+  visited: boolean;
 }
 
 export interface PlaceUpdate {
-  name: PlaceContent;
-  address: PlaceContent;
+  name: string;
+  address: string;
   visited: boolean;
 }
