@@ -1,11 +1,14 @@
-import type { InitialState } from "@/types/redux";
+import type { InitialState } from "@/types/redux.ts";
 import { createReducer } from "@reduxjs/toolkit";
 import { AuthStatus } from "@/enums/enums.ts";
 import { checkAuth, login, register } from "@/store/api-actions/auth.ts";
 import type { Error } from "@/types/api.ts";
+import { clearFoundPacks } from "@/store/actions/pack.ts";
+import { getPacksByQuery, updateDiscoverPack } from "@/store/api-actions/pack.ts";
 
 const initialState: InitialState = {
   user: null,
+  foundPacks: [],
   auth: AuthStatus.No,
   loading: false,
   errors: [],
@@ -13,6 +16,37 @@ const initialState: InitialState = {
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(clearFoundPacks, (state) => {
+      state.foundPacks = [];
+    })
+    .addCase(getPacksByQuery.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(getPacksByQuery.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errors = [];
+      state.foundPacks = action.payload;
+    })
+    .addCase(getPacksByQuery.rejected, (state, action) => {
+      state.loading = false;
+      state.errors = action.payload as Error[];
+      state.foundPacks = [];
+    })
+    .addCase(updateDiscoverPack.pending, (state) => {
+      // state.loading = true;
+    })
+    .addCase(updateDiscoverPack.fulfilled, (state, action) => {
+      // state.loading = false;
+      state.errors = [];
+      const packIndex = state.foundPacks.findIndex((pack) => pack.id === action.payload.id);
+      if (packIndex !== -1) {
+        state.foundPacks[packIndex] = action.payload;
+      }
+    })
+    .addCase(updateDiscoverPack.rejected, (state, action) => {
+      // state.loading = false;
+      state.errors = action.payload as Error[];
+    })
     .addCase(checkAuth.pending, (state) => {
       state.loading = true;
     })

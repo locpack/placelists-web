@@ -11,7 +11,7 @@ import type { AxiosError } from "axios";
 export const checkAuth = createAsyncThunk<User, undefined, ThunkApiConfig>(
   `${Namespace.Auth}/checkAuth`,
   async (_, { rejectWithValue, extra: api }) => {
-    const url = `${BACKEND_URL}/api/v1/users/me`;
+    const url = `${BACKEND_URL}/api/v1/users/my`;
     const response = await api
       .get<SingleResponseWrapper<User>>(url)
       .then((response) => response.data)

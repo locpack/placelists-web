@@ -83,15 +83,15 @@ function RegisterPage() {
   }
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto">
-      <Card className="border-0 shadow-none">
-        <CardHeader className="flex flex-col items-center space-y-0 pt-8 pb-0">
+    <div className="flex flex-col h-full overflow-y-auto -mx-8 px-8">
+      <Card className="border-0 shadow-none p-0">
+        <CardHeader className="flex flex-col space-y-0 p-0">
           <CardTitle className="text-2xl font-bold">Create account</CardTitle>
           <CardDescription className="text-base text-muted-foreground">
             Sign up to get started
           </CardDescription>
         </CardHeader>
-        <CardContent className="px-6 pt-6">
+        <CardContent className="px-0 pt-6">
           <form onSubmit={handleRegister} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-base font-medium">

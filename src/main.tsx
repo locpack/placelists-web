@@ -9,6 +9,7 @@ import { store } from "@/store/main.ts";
 import LoginPage from "@/pages/login-page.tsx";
 import RegisterPage from "@/pages/register-page.tsx";
 import { checkAuth } from "@/store/api-actions/auth.ts";
+import DiscoverPage from "@/pages/discover-page.tsx";
 
 const root = createRoot(document.getElementById("root")!);
 
@@ -20,6 +21,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
+            <Route index element={<DiscoverPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="*" element={<ErrorPage />} />

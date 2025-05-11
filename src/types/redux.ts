@@ -2,6 +2,7 @@ import type { AxiosInstance } from "axios";
 import { AuthStatus } from "@/enums/enums";
 import type { Error } from "@/types/api";
 import type { User } from "@/types/user";
+import type { Pack } from "@/types/pack.ts";
 
 export type ThunkApiConfig = {
   rejectValue: Error[];
@@ -13,7 +14,7 @@ export interface InitialState {
   auth: AuthStatus;
   // placelist: Placelist | null;
   // placelists: Placelist[];
-  // foundPlacelists: Placelist[];
+  foundPacks: Pack[];
   // place: Place | null;
   // places: Place[];
   // foundPlaces: Place[];

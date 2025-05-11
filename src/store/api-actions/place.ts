@@ -1,11 +1,11 @@
-import { BACKEND_URL, Namespace } from "@/settings";
-import { MultipleResponseWrapper, SingleResponseWrapper, WrappedRequest } from "@/types/api";
-import { Id } from "@/types/common";
-import { Place, PlaceContent, PlaceCreate, PlaceUpdate } from "@/types/place";
-import { ThunkApiConfig } from "@/types/redux";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { BACKEND_URL } from "@/cfg/cfg";
+import { Namespace } from "@/enums/enums";
+import type {MultipleResponseWrapper, SingleResponseWrapper, WrappedRequest} from "@/types/api";
+import type {Place, PlaceCreate, PlaceUpdate} from "@/types/place";
+import type {ThunkApiConfig} from "@/types/redux";
 
-export const getPlacesByQuery = createAsyncThunk<Place[], PlaceContent, ThunkApiConfig>(
+export const getPlacesByQuery = createAsyncThunk<Place[], string, ThunkApiConfig>(
   `${Namespace.Places}/get/byQuery`,
   async (query, { rejectWithValue, extra: api }) => {
     const requestUrl = `${BACKEND_URL}/api/v1/places`;
@@ -34,7 +34,7 @@ export const createPlace = createAsyncThunk<Place, PlaceCreate, ThunkApiConfig>(
   }
 );
 
-export const getPlaceById = createAsyncThunk<Place, Id, ThunkApiConfig>(
+export const getPlaceById = createAsyncThunk<Place, string, ThunkApiConfig>(
   `${Namespace.Places}/get/byId`,
   async (placeId, { rejectWithValue, extra: api }) => {
     const requestUrl = `${BACKEND_URL}/api/v1/places/${placeId}`;
